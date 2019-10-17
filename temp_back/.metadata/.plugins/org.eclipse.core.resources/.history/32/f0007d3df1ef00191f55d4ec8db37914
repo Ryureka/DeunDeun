@@ -1,0 +1,20 @@
+package com.deun.app;
+
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.ConfigurableApplicationContext;
+
+import com.deun.model.MemberEntity;
+import com.deun.repository.MemberJpaRepository;
+
+@SpringBootApplication
+public class DeunApplication {
+
+	public static void main(String[] args) {
+		ConfigurableApplicationContext context = SpringApplication.run(DeunApplication.class, args);
+		
+		MemberJpaRepository memberJpaRepository = context.getBean(MemberJpaRepository.class);
+		memberJpaRepository.save(new MemberEntity());
+	}
+
+}

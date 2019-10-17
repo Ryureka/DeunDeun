@@ -1,0 +1,4 @@
+# 내장된 톰켓을 사용하지 않을 경우 none
+#spring.main.web-application-type=none
+
+

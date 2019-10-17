@@ -1,0 +1,92 @@
+package com.deun.model;
+
+import java.util.Date;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
+import javax.persistence.PrePersist;
+import javax.persistence.Table;
+
+@Entity
+@Table(name = "Member")
+public class MemberEntity {
+	private long member_id;
+	private String name;
+	private String nickname;
+	private String email;
+	private String password;
+	private String tel;
+
+	@Column(name = "grade")
+	@Enumerated(EnumType.STRING)
+	private MemberRole role;
+
+	private Date createAt;
+
+	public long getMember_id() {
+		return member_id;
+	}
+
+	public void setMember_id(long member_id) {
+		this.member_id = member_id;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public String getNickname() {
+		return nickname;
+	}
+
+	public void setNickname(String nickname) {
+		this.nickname = nickname;
+	}
+
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
+	public String getPassword() {
+		return password;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
+	}
+
+	public String getTel() {
+		return tel;
+	}
+
+	public void setTel(String tel) {
+		this.tel = tel;
+	}
+
+	public MemberRole getRole() {
+		return role;
+	}
+
+	public void setRole(MemberRole role) {
+		this.role = role;
+	}
+
+	public Date getCreateAt() {
+		return createAt;
+	}
+
+	public void setCreateAt(Date createAt) {
+		this.createAt = createAt;
+	}
+
+}

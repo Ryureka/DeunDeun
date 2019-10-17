@@ -1,0 +1,20 @@
+package com.deun.model;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Enumerated;
+import javax.persistence.Table;
+
+@Entity
+@Table(name = "Member")
+public class MemberEntity {
+	private long member_id;
+	private String nickname;
+	private String email;
+	private String password;
+	
+	@Column(name = "role")
+	@Enumerated
+	private UserRole grade;
+}
+

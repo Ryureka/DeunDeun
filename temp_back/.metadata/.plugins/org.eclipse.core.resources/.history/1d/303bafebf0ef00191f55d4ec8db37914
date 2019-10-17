@@ -1,0 +1,13 @@
+package com.deun.app;
+
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+
+@SpringBootApplication
+public class DeunApplication {
+
+	public static void main(String[] args) {
+		SpringApplication.run(DeunApplication.class, args);
+	}
+
+}

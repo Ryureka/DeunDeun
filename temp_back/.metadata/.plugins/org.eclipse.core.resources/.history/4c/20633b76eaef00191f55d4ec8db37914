@@ -1,0 +1,10 @@
+package com.deun.model;
+
+import javax.persistence.Entity;
+import javax.persistence.Table;
+
+@Entity
+@Table(name = "Member")
+public class MemberEntity {
+	private long
+}

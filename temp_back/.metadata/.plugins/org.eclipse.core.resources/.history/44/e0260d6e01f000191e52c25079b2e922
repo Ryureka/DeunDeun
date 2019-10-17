@@ -1,0 +1,29 @@
+package com.deun.app;
+
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.ConfigurableApplicationContext;
+
+import com.deun.model.MemberEntity;
+import com.deun.model.MemberRole;
+import com.deun.model.TestEntity;
+import com.deun.repository.MemberJpaRepository;
+import com.deun.repository.TestRepository;
+
+@SpringBootApplication
+public class DeunApplication {
+
+	public static void main(String[] args) {
+		ConfigurableApplicationContext contextApplicationContext = SpringApplication.run(DeunApplication.class, args);
+
+//		MemberJpaRepository memberJpaRepository = context.getBean(MemberJpaRepository.class);
+//		memberJpaRepository.save(new MemberEntity("정표용", "3대500", "dd209@naver.com", "1", "010", MemberRole.ADMIN));
+//		MemberEntity member = memberJpaRepository.findByMemberName("정표용");
+		
+		contextApplicationContext.getBeanFactory();
+//		repository.save(new TestEntity("test"));
+//		TestEntity entity = repository.getOne((long) 1);
+//		System.out.println();
+	}
+
+}

@@ -1,0 +1,6 @@
+package com.deun.model;
+
+public enum UserRole {
+	USER,
+	ADMIN
+}
