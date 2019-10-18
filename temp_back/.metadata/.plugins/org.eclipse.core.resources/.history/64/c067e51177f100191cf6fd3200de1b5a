@@ -1,0 +1,5 @@
+package com.deun.config;
+
+public class MyBatisConfig {
+
+}
