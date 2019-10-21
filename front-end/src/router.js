@@ -3,6 +3,7 @@ import Router from 'vue-router'
 import Home from './views/Home.vue'
 import Login from './views/Login.vue'
 import Signup from './views/SignUp.vue'
+import FindInfo from './views/FindInfo.vue'
 
 Vue.use(Router)
 
@@ -26,6 +27,10 @@ export default new Router({
       path: '/signUp',
       name: 'signUp',
       component:Signup
+    },{
+      path: '/findInfo/:foodCode',
+      name: 'findInfo',
+      component:FindInfo
     }
   ]
 })

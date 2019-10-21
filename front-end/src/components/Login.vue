@@ -14,7 +14,7 @@
                 <v-text-field :rules="rules" color="white" placeholder="PWD" id="input__form"></v-text-field>
             </v-flex> 
             <v-flex xs10 class="ml-9 pl-12">
-                <v-btn text color="accent">아이디/비밀번호찾기</v-btn>
+                <v-btn :to="{name:'findInfo'}" text color="accent">아이디/비밀번호찾기</v-btn>
             </v-flex>
 
              <v-flex xs12 sm12 md12 lg12 class="pt-12 pl-2">
