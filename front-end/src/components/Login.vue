@@ -18,7 +18,7 @@
             </v-flex>
 
              <v-flex xs12 sm12 md12 lg12 class="pt-12 pl-2">
-                <v-btn text id="start__btn">접속하기</v-btn>
+                <v-btn :to="{name:'list'}" text id="start__btn">접속하기</v-btn>
                 <v-btn :to="{name:'signUp'}"  text id="signUp__btn">동참하기</v-btn>
             </v-flex>
         </v-layout>
