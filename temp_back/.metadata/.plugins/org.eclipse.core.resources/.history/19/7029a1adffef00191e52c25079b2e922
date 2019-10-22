@@ -1,9 +1,0 @@
-package com.deun.repository;
-
-import org.springframework.data.jpa.repository.JpaRepository;
-
-import com.deun.model.TestEntity;
-
-public interface TestRepository extends JpaRepository<TestEntity, Long>{
-
-}
