@@ -4,10 +4,6 @@
             <v-flex xs4 sm12 md12 lg12>
                 <v-img :src="require('../assets/logo_white.png')" class="my-3" contain width="120" height = "50"></v-img>
             </v-flex>
-
-            <!-- <v-flex>
-                <v-btn width="400" height="150"><span>dd</span></v-btn>
-            </v-flex> -->
             
             <!-- <v-flex xs4 sm12 md12 lg12> -->
             <v-flex>
@@ -18,9 +14,6 @@
                                 <div class="d-flex flex-no-wrap justify-space-between">
                                     <div>
                                         <v-card-title class="headline" v-text="item.title"></v-card-title>
-                                        <!-- <v-card-actions>
-                                            <v-btn text>구경하러 가기{{counter}}</v-btn>
-                                        </v-card-actions> -->
                                         <v-card-subtitle v-text="item.comment"></v-card-subtitle>
                                     </div>
                                     
