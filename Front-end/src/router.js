@@ -2,6 +2,9 @@ import Vue from 'vue'
 import Router from 'vue-router'
 import Home from './views/Home'
 import FoodCategory from './views/FoodCategory'
+import Login from './views/Login'
+import FoodList from './views/FoodList'
+
 Vue.use(Router)
 
 export default new Router({
@@ -17,6 +20,16 @@ export default new Router({
       path: '/FoodCategory',
       name: 'FoodCategory',
       component: FoodCategory
+    },
+    {
+      path: '/Login',
+      name: 'Login',
+      component: Login
+    },
+    {
+      path: '/FoodList',
+      name: 'FoodList',
+      component: FoodList
     }
   ]
 })

@@ -1,10 +1,14 @@
 <template>
   <v-toolbar
     v-scroll="onScroll"
-    :color="isTransparent ? 'transparent' : '#F5F5F5'"
+    :color="isTransparent ? 'transparent' : '#4e5381e6'"
     app
     flat
-  >
+  > 
+  <div>
+      <v-img :src="require('@/assets/logo_white.png')" width="120"/>
+  </div>
+
     <v-spacer />
     <SocialMedia />
   </v-toolbar>

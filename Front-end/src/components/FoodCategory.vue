@@ -5,7 +5,7 @@
   >
     <v-layout primary white--text>
         <v-container fluid>
-             <v-card id="cards__small">
+             <v-card id="cards__small" @click="$router.push({name: 'FoodList'})">
                 <v-img
                 id="cards__image__rect"
                 :src="require('@/assets/Category/AllFood.jpg')"

@@ -47,7 +47,7 @@
               &nbsp;시작하기&nbsp;
             </v-btn>
 
-            <v-btn  color="secondary" rounded class="mt-4 ml-5" :to="{name:'FoodCategory'}">
+            <v-btn  color="secondary" rounded class="mt-4 ml-5" :to="{name:'Login'}">
               &nbsp;로그인&nbsp;
             </v-btn>
           </v-flex>
