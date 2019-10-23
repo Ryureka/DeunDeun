@@ -5,7 +5,9 @@
   >
     <v-layout primary white--text>
         <v-container fluid>
-             <v-card id="cards__small" @click="$router.push({name: 'FoodList'})">
+            <br>
+            
+             <v-card id="cards__small" @click="$router.push({name: 'FoodList', params: {category: 'all'}})">
                 <v-img
                 id="cards__image__rect"
                 :src="require('@/assets/Category/AllFood.jpg')"
@@ -16,7 +18,7 @@
                 </v-img>
             </v-card>
 
-            <v-card id="cards__small">
+            <v-card id="cards__small" @click="$router.push({name: 'FoodList', params: {category: 'one'}})">
                 <v-img
                 id="cards__image__rect"
                 :src="require('@/assets/Category/Alone.jpg')"
@@ -27,7 +29,7 @@
                 </v-img>
             </v-card>
 
-            <v-card id="cards__rect">
+            <v-card id="cards__rect" @click="$router.push({name: 'FoodList', params: {category: 'chicken'}})">
                 <v-img
                 id="cards__image__rect"
                 :src="require('@/assets/Category/Chicken.jpg')"
@@ -38,7 +40,7 @@
                 </v-img>
             </v-card>
 
-            <v-card id="cards__rect">
+            <v-card id="cards__rect" @click="$router.push({name: 'FoodList', params: {category: 'pizza'}})">
                 <v-img
                 id="cards__image__rect"
                 :src="require('@/assets/Category/Pizza.jpg')"
@@ -49,7 +51,7 @@
                 </v-img>
             </v-card>
 
-            <v-card id="cards__small">
+            <v-card id="cards__small" @click="$router.push({name: 'FoodList', params: {category: 'pig'}})">
                 <v-img
                 id="cards__image__rect"
                 :src="require('@/assets/Category/PorkFeet.jpg')"
@@ -60,7 +62,7 @@
                 </v-img>
             </v-card>
 
-            <v-card id="cards__small">
+            <v-card id="cards__small" @click="$router.push({name: 'FoodList', params: {category: 'ddeok'}})">
                 <v-img
                 id="cards__image__rect"
                 :src="require('@/assets/Category/SnackFood.jpg')"
@@ -71,7 +73,7 @@
                 </v-img>
             </v-card>
             
-            <v-card id="cards__rect_small">
+            <v-card id="cards__rect_small" @click="$router.push({name: 'FoodList', params: {category: 'cafe'}})">
                 <v-img
                 id="cards__image__small"
                 :src="require('@/assets/Category/Cafe.jpg')"
@@ -82,7 +84,7 @@
                 </v-img>
             </v-card>
             
-            <v-card id="cards__rect_small_under">
+            <v-card id="cards__rect_small_under" @click="$router.push({name: 'FoodList', params: {category: 'burger'}})">
                 <v-img
                 id="cards__image__small"
                 :src="require('@/assets/Category/Franchise.jpg')"
@@ -93,7 +95,7 @@
                 </v-img>
             </v-card>
             
-            <v-card  id="cards__rect__under">
+            <v-card  id="cards__rect__under" @click="$router.push({name: 'FoodList', params: {category: 'chinese'}})">
                 <v-img
                 id="cards__image__under"
                 :src="require('@/assets/Category/Chinese.jpg')"
@@ -104,7 +106,7 @@
                 </v-img>
             </v-card>
 
-            <v-card id="cards__large__under" >
+            <v-card id="cards__large__under" @click="$router.push({name: 'FoodList', params: {category: 'korean'}})">
                 <v-img
                 id="cards__image__under"
                 :src="require('@/assets/Category/KoreanFood.jpg')"
@@ -115,7 +117,7 @@
                 </v-img>
             </v-card>
 
-            <v-card  id="cards__rect__under">
+            <v-card  id="cards__rect__under" @click="$router.push({name: 'FoodList', params: {category: 'japanese'}})">
                 <v-img
                 id="cards__image__under"
                 :src="require('@/assets/Category/JapaneseFood.jpg')"
@@ -126,7 +128,7 @@
                 </v-img>
             </v-card>
 
-            <v-card  id="cards__rect__under">
+            <v-card  id="cards__rect__under" @click="$router.push({name: 'FoodList', params: {category: 'night'}})">
                 <v-img
                 id="cards__image__under"
                 :src="require('@/assets/Category/Ramen.jpg')"
