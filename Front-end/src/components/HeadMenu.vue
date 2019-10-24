@@ -31,7 +31,7 @@ export default {
       {
         name: 'FAQ',
         icon: 'mdi-help-circle-outline',
-        page: 'Notice'
+        page: 'FAQ'
       },
       {
         name: 'Notice',

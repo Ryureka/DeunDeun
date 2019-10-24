@@ -3,8 +3,11 @@
     id="get-in-touch"
     class="hide-overflow"
   >
-    <v-layout primary white--text>
+    <v-layout accent white--text>
         <v-container fluid class="mt-5">
+            <v-label>
+              <h1>asd</h1>
+            </v-label>
             <v-expansion-panel focusable popout>
               <v-expansion-panel-content v-for="(item,i) in items" :key="i">
                 <div slot="header">{{item.Header}}</div>

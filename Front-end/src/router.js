@@ -6,6 +6,7 @@ import Login from './views/Login'
 import FoodList from './views/FoodList'
 import SignUp from './views/SignUp'
 import Notice from './views/Notice'
+import FAQ from './views/FAQ'
 
 Vue.use(Router)
 
@@ -42,6 +43,11 @@ export default new Router({
       path: '/Notice',
       name: 'Notice',
       component: Notice
+    },
+    {
+      path: '/FAQ',
+      name: 'FAQ',
+      component: FAQ
     }
   ]
 })
