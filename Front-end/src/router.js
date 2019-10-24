@@ -4,6 +4,8 @@ import Home from './views/Home'
 import FoodCategory from './views/FoodCategory'
 import Login from './views/Login'
 import FoodList from './views/FoodList'
+import SignUp from './views/SignUp'
+import Notice from './views/Notice'
 
 Vue.use(Router)
 
@@ -30,6 +32,16 @@ export default new Router({
       path: '/FoodList',
       name: 'FoodList',
       component: FoodList
+    },
+    {
+      path: '/SignUp',
+      name: 'SignUp',
+      component: SignUp
+    },
+    {
+      path: '/Notice',
+      name: 'Notice',
+      component: Notice
     }
   ]
 })

@@ -28,7 +28,7 @@
               </v-card-text>
               <v-card-actions>
                 <v-btn color="info">Find ID/PWD</v-btn>
-                <v-btn color="primary">SignUp</v-btn>
+                <v-btn color="primary" :to="{name:'SignUp'}">SignUp</v-btn>
                 <v-spacer></v-spacer>
                 <v-btn color="primary" :to="{name:'FoodCategory'}">Login</v-btn>
               </v-card-actions>
