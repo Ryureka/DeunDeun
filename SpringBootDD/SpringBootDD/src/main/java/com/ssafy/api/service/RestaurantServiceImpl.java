@@ -10,6 +10,7 @@ import com.ssafy.api.repository.RestaurantRepository;
 
 @Service
 public class RestaurantServiceImpl implements RestaurantService{
+
 	@Autowired
 	private RestaurantRepository repo;
 
@@ -41,5 +42,11 @@ public class RestaurantServiceImpl implements RestaurantService{
 	@Override
 	public int delete(int restaurant_id) {
 		return repo.delete(restaurant_id);
+	}
+
+	@Override
+	public int joinTest() {
+		// TODO Auto-generated method stub
+		return repo.joinTest();
 	}
 }

@@ -11,4 +11,5 @@ public interface RestaurantRepository {
 	public List<Restaurant> selectAll();
 	public int update(String tel);
 	public int delete(int restaurant_id);
+	public int joinTest();
 }

@@ -1,11 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <qualifiedTypeNameHistroy>
-<fullyQualifiedTypeName name="javax.persistence.Table"/>
-<fullyQualifiedTypeName name="org.springframework.data.jpa.repository.JpaRepository"/>
-<fullyQualifiedTypeName name="java.lang.Long"/>
-<fullyQualifiedTypeName name="org.springframework.data.repository.query.Param"/>
-<fullyQualifiedTypeName name="com.deun.model.TestEntity"/>
-<fullyQualifiedTypeName name="org.springframework.data.jpa.repository.config.EnableJpaRepositories"/>
 <fullyQualifiedTypeName name="org.springframework.web.bind.annotation.Mapping"/>
 <fullyQualifiedTypeName name="org.springframework.context.ConfigurableApplicationContext"/>
 <fullyQualifiedTypeName name="com.deun.repository.TestRepository"/>
@@ -60,4 +54,10 @@
 <fullyQualifiedTypeName name="java.lang.reflect.Member"/>
 <fullyQualifiedTypeName name="java.util.List"/>
 <fullyQualifiedTypeName name="com.ssafy.api.dto.Members"/>
+<fullyQualifiedTypeName name="com.ssafy.api.service.RestaurantService"/>
+<fullyQualifiedTypeName name="com.ssafy.api.service.RestaurantServiceImpl"/>
+<fullyQualifiedTypeName name="com.ssafy.api.dto.Notice"/>
+<fullyQualifiedTypeName name="com.ssafy.api.mapper.NoticesMapper"/>
+<fullyQualifiedTypeName name="com.ssafy.api.service.NoticeService"/>
+<fullyQualifiedTypeName name="com.ssafy.api.repository.NoticeRepository"/>
 </qualifiedTypeNameHistroy>

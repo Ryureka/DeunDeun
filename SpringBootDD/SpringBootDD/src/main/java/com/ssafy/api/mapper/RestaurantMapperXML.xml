@@ -20,4 +20,8 @@
 	<delete id="deleteOneById" parameterType="int">
 		DELETE FROM RESTAURANT WHERE RESTAURANT_ID=#{restaurant_id};
 	</delete>
+	<select id="joinTest" resultType="int">
+		select f.price from restaurant as res inner join food as f on res.restaurant_id = f.restaurant_id and f.food_id = 1;
+	</select>
+	
 </mapper>

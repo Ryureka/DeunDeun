@@ -49,5 +49,12 @@ public class RestaurantRepositoryImpl implements RestaurantRepository{
 		RestaurantMapper mapper=template.getMapper(RestaurantMapper.class);
 		return mapper.delete(restaurant_id);
 	}
+
+	@Override
+	public int joinTest() {
+		// TODO Auto-generated method stub
+		RestaurantMapper mapper=template.getMapper(RestaurantMapper.class);
+		return mapper.joinTest();
+	}
 	
 }

@@ -18,9 +18,6 @@ import com.ssafy.api.service.RestaurantService;
 public class RestaurantController {
 	@Autowired
 	private RestaurantService service;
-	public void setService(RestaurantService service) {
-		this.service = service;
-	}
 	
 	@RequestMapping(value="/" ,method = RequestMethod.GET)
 	public List<Restaurant> selectAll() {
@@ -30,5 +27,10 @@ public class RestaurantController {
 	@RequestMapping(value = "/{restaurant_id}", method = RequestMethod.GET)
 	public Restaurant selectOneById(@PathVariable int restaurant_id) {
 		return service.selectOneById(restaurant_id);
+	}
+	
+	@RequestMapping(value = "/join", method = RequestMethod.GET)
+	public int joinTest() {
+		return service.joinTest();
 	}
 }
