@@ -29,8 +29,13 @@ public class RestaurantController {
 		return service.selectOneById(restaurant_id);
 	}
 	
-	@RequestMapping(value = "/join", method = RequestMethod.GET)
-	public int joinTest() {
-		return service.joinTest();
+	@RequestMapping(value = "/lowest", method = RequestMethod.GET)
+	public List<Restaurant> selectLowestPrice(){
+		return service.selectLowestPrice();
+	}
+	
+	@RequestMapping(value = "/lon={x}/lat={y}/range={range}", method = RequestMethod.GET)
+	public List<Restaurant> searchRestaurant(@PathVariable double x, @PathVariable double y, @PathVariable int range) {
+		return service.searchRestaurant(x, y, range);
 	}
 }

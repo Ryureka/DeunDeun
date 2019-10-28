@@ -11,5 +11,6 @@ public interface RestaurantService {
 	public List<Restaurant> selectAll();
 	public int update(String tel);
 	public int delete(int restaurant_id);
-	public int joinTest();
+	public List<Restaurant> selectLowestPrice();
+	public List<Restaurant> searchRestaurant(double x, double y, int range);
 }

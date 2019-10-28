@@ -51,10 +51,11 @@ public class RestaurantRepositoryImpl implements RestaurantRepository{
 	}
 
 	@Override
-	public int joinTest() {
-		// TODO Auto-generated method stub
+	public List<Restaurant> selectLowestPrice() {
 		RestaurantMapper mapper=template.getMapper(RestaurantMapper.class);
-		return mapper.joinTest();
+		return mapper.selectLowestPrice();
 	}
+
+
 	
 }

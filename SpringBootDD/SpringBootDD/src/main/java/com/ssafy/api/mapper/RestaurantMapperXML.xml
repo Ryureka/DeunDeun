@@ -20,8 +20,16 @@
 	<delete id="deleteOneById" parameterType="int">
 		DELETE FROM RESTAURANT WHERE RESTAURANT_ID=#{restaurant_id};
 	</delete>
-	<select id="joinTest" resultType="int">
-		select f.price from restaurant as res inner join food as f on res.restaurant_id = f.restaurant_id and f.food_id = 1;
+	<select id="selectLowestPrice" resultType="Restaurant">
+		select r.*, f.price 
+		from restaurant as r 
+		inner join (
+			select restaurant_id ,min(price) as price 
+			from food 
+			where popular_menu = 1 
+			group by restaurant_id
+			) as f 
+		on r.restaurant_id = f.restaurant_id;
 	</select>
 	
 </mapper>
