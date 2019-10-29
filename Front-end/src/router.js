@@ -11,43 +11,42 @@ import FAQ from './views/FAQ'
 Vue.use(Router)
 
 export default new Router({
-  mode: 'history',
-  base: process.env.BASE_URL,
-  routes: [
-    {
-      path: '/',
-      name: 'Home',
-      component: Home
-    },
-    {
-      path: '/FoodCategory',
-      name: 'FoodCategory',
-      component: FoodCategory
-    },
-    {
-      path: '/Login',
-      name: 'Login',
-      component: Login
-    },
-    {
-      path: '/FoodList',
-      name: 'FoodList',
-      component: FoodList
-    },
-    {
-      path: '/SignUp',
-      name: 'SignUp',
-      component: SignUp
-    },
-    {
-      path: '/Notice',
-      name: 'Notice',
-      component: Notice
-    },
-    {
-      path: '/FAQ',
-      name: 'FAQ',
-      component: FAQ
-    }
-  ]
+    mode: 'history',
+    base: process.env.BASE_URL,
+    routes: [{
+            path: '/',
+            name: 'Home',
+            component: Home
+        },
+        {
+            path: '/FoodCategory',
+            name: 'FoodCategory',
+            component: FoodCategory
+        },
+        {
+            path: '/Login',
+            name: 'Login',
+            component: Login
+        },
+        {
+            path: '/FoodList/:category',
+            name: 'FoodList',
+            component: FoodList
+        },
+        {
+            path: '/SignUp',
+            name: 'SignUp',
+            component: SignUp
+        },
+        {
+            path: '/Notice',
+            name: 'Notice',
+            component: Notice
+        },
+        {
+            path: '/FAQ',
+            name: 'FAQ',
+            component: FAQ
+        }
+    ]
 })
