@@ -3,7 +3,7 @@
     id="welcome"
     class="hide-overflow"
   >
-    <v-layout>
+    <v-layout class="mt-7">
       <v-flex
         hidden-sm-and-down
         md6

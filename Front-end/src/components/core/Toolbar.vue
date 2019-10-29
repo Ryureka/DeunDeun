@@ -1,16 +1,26 @@
 <template>
   <div>
     <v-app-bar
-      color="deep-purple accent-4"
+      color="indigo darken-4"
       dense
       dark
-    >
-      <v-app-bar-nav-icon></v-app-bar-nav-icon>
-
-      <v-toolbar-title>Page title</v-toolbar-title>
-
+      fixed=""
+      hide-on-scroll=""
+    > 
+      <div>
+        <v-img :src="require('@/assets/logo_white.png')" width="100"></v-img>
+      </div>
       <v-spacer></v-spacer>
+      <HeadMenu/>
 
     </v-app-bar>
   </div>
 </template>
+
+<script>
+export default {
+  components: {
+    HeadMenu : () => import('@/components/HeadMenu')
+  }
+}
+</script>

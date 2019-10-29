@@ -3,7 +3,7 @@
     id="get-in-touch"
     class="hide-overflow"
   >
-    <v-layout primary white--text>
+    <v-layout class="light-blue darken-4 pt-12 pb-3" white--text>
         <v-container fluid>
              <v-card id="cards__small" @click="$router.push({name: 'FoodList'})">
                 <v-img

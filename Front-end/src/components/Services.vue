@@ -18,6 +18,8 @@
         md6
         text-xs-center
         pa-5
+        primary
+        white--text
       >
         <v-layout
           align-center

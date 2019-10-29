@@ -7,7 +7,7 @@
       <v-flex
         xs12
         md6
-        primary
+        secondary
         text-xs-center
         pa-5
         white--text
@@ -25,10 +25,11 @@
           가성비 좋은 음식을 찾아드립니다
         </base-text>
 
-        <v-card color="secondary">
+        <v-card color="secondary" >
           <v-container
             grid-list-md
             pa-2
+            hidden-sm-and-down
           >
             <v-layout wrap>
               <v-flex

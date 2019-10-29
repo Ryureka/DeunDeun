@@ -5,8 +5,9 @@
       :key="i"
       fab
       class="ma-2"
+      small
       :large="large"
-      color="info"
+      color="transparent"
       :to="{name:item.page}"
     >
       <v-icon
