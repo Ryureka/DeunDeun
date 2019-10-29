@@ -8,6 +8,8 @@
     <!--The div element for the map -->
     <p>{{ now_x }}</p>
     <p>{{ now_y }}</p>
+
+    <div id="map" ref="maps"></div>
   </div>
 </template>
 
@@ -26,8 +28,13 @@ export default {
   props: {
     msg: String
   },
+  created() {
+    
+    
+    },
   mounted() {
-  
+ 
+    
     axios({
       url: "https://www.googleapis.com/geolocation/v1/geolocate",
       method: "post",
@@ -39,7 +46,12 @@ export default {
       this.now_x = res.data.location.Lng,
       this.now_y = res.data.location.Iat
     });
+
+  },
+  methods : {
+      
   }
+
 };
 </script>
 
@@ -59,4 +71,17 @@ li {
 a {
   color: #42b983;
 }
+
+
+/* Always set the map height explicitly to define the size of the div
+       * element that contains the map. */
+      #map {
+        height: 100%;
+      }
+      /* Optional: Makes the sample page fill the window. */
+      html, body {
+        height: 100%;
+        margin: 0;
+        padding: 0;
+      }
 </style>

@@ -31,7 +31,8 @@ export default {
     return {
       restaurant : {},
       now_x : 0.0,
-      now_y : 0.0
+      now_y : 0.0,
+      range : 300
     };
   },
   mounted() {
@@ -55,12 +56,16 @@ export default {
         url: "http://localhost:8888/restaurant/here",
         method: "get",
         params: {
-          lon : this.now_x,
-          lat : this.now_y,
-          range : 100
+          // lon : this.now_x,
+          // lat : this.now_y,
+          // range : 1000
+          lon : 127.2990094,
+          lat : 36.35078,
+          range : this.range
         }
       }).then(res => {
         console.log("", this.now_x+", "+this.now_y)
+        console.log("주변 상가", res.data)
       });
     });
   }
