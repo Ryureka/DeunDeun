@@ -7,6 +7,7 @@ import FoodList from './views/FoodList'
 import SignUp from './views/SignUp'
 import Notice from './views/Notice'
 import FAQ from './views/FAQ'
+import UserInfo from './views/UserInfo'
 
 Vue.use(Router)
 
@@ -47,6 +48,11 @@ export default new Router({
             path: '/FAQ',
             name: 'FAQ',
             component: FAQ
+        },
+        {
+            path: '/UserInfo',
+            name: 'UserInfo',
+            component: UserInfo
         }
     ]
 })

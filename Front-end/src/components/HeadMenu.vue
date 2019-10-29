@@ -42,7 +42,7 @@ export default {
       {
         name: 'Account',
         icon: 'mdi-account',
-        page: 'FoodCategory'
+        page: 'UserInfo'
       }
     ]
   })
