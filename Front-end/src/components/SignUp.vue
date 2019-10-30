@@ -10,42 +10,77 @@
                 <v-toolbar-title>Sign up</v-toolbar-title>
               </v-toolbar>
               <v-card-text>
-                <v-form>
-                  <v-text-field
-                    label="E-mail"
-                    name="login"
-                    type="text"
-                  ></v-text-field>
+                <v-form
+                    ref="form"
+                    v-model="valid"
+                    lazy-validation
+                  >
+                    <v-text-field
+                      v-model="members.email"
+                      :rules="emailRules"
+                      label="E-mail"
+                      required
+                    ></v-text-field>
 
-                <div id="password">
-                  <v-text-field
-                    label="Repeat Password"
-                    name="password"
-                    type="password"
-                  ></v-text-field>
-                </div>
+                    <v-text-field
+                      v-model="members.password"
+                      :rules="passwordRules"
+                      :type="show1 ? 'text' : 'password'"
+                      name="input-10-1"
+                      label="Password"
+                      hint="At least 8 characters"
+                      :counter="20"
+                    ></v-text-field>
 
-                <div id="password__left">
-                  <v-text-field
-                    label="Password"
-                    name="password"
-                    type="password"
-                  ></v-text-field>
-                </div>
+                    <v-text-field
+                      :rules="passwordRules"
+                      :type="show1 ? 'text' : 'password'"
+                      name="input-10-1"
+                      label="Password"
+                      hint="At least 8 characters"
+                      :counter="20"
+                    ></v-text-field>
 
-                  <v-text-field
-                    label="Name"
-                    name="login"
-                    type="text"
-                  ></v-text-field>
-                  
-                </v-form>
+
+                    <v-text-field
+                      v-model="members.name"
+                      :counter="10"
+                      :rules="nameRules"
+                      label="Name"
+                      required
+                    ></v-text-field>
+
+                    <v-text-field
+                      v-model="members.nickName"
+                      :counter="10"
+                      :rules="nameRules"
+                      label="NickName"
+                      required
+                    ></v-text-field>
+
+                    <v-text-field
+                      v-model="members.tel"
+                      :counter="11"
+                      :rules="nameRules"
+                      label="Tel"
+                      required
+                    ></v-text-field>
+
+
+                    <v-checkbox
+                      v-model="checkbox"
+                      :rules="[v => !!v || 'You must agree to continue!']"
+                      label="Do you agree?"
+                      required
+                    ></v-checkbox>
+
+                  </v-form>
               </v-card-text>
               <v-card-actions>
                 <v-btn color="info">Find ID/PWD</v-btn>
                 <v-btn color="primary" :to="{name:'Login'}">Back</v-btn>
                 <v-spacer></v-spacer>
-                <v-btn color="primary" :to="{name:'Login'}">SignUp</v-btn>
+                <v-btn color="primary" @click="register">SignUp</v-btn>
               </v-card-actions>
             </v-card>
         </v-container>
@@ -54,22 +89,63 @@
 </template>
 
 
-<style>
 
-    @media screen and (min-width: 1520px) {
-        #password{
-            width: 260px;
-            float: right;
-        }
-
-        #password__left{
-            width: 260px;
-        }
-        
-    }
-
-    @media screen and (max-width: 600px) {
-        
-    }
-  
-</style>
+<script>
+import axios from "axios";
+export default {
+ name: "signUp",
+ data: function() {
+   return {
+     members: {},
+     passwordConfirm: "",
+     valid: true,
+      name: '',
+      nameRules: [
+        v => !!v || 'Name is required',
+        v => (v && v.length <= 10) || 'Name must be less than 10 characters',
+      ],
+      email: '',
+      emailRules: [
+        v => !!v || 'E-mail is required',
+        v => /.+@.+\..+/.test(v) || 'E-mail must be valid',
+      ],
+      checkbox: false,
+      show1: false,
+      passwordRules:[
+        v => !!v || 'Password is required',
+      ]
+   };
+ },
+ methods: {
+   register: function() {
+     var body = {
+       name: this.members.name,
+       nickname: this.members.nickname,
+       email: this.members.email,
+       password: this.members.password,
+       tel: this.members.tel,
+       grade: "user",
+       create_at: new Date()
+     };
+     axios({
+       headers: { "Content-Type": "application/json" },
+       url: "http://192.168.31.139:8888/members/regist",
+       method: "post",
+       data: JSON.stringify(body)
+     }).then(res => {
+       console.log("member", res);
+     });
+     console.log("mem", body);
+   }
+ },
+ mounted() {
+   axios({
+     headers: { "Content-Type": "application/json" },
+     url: "http://192.168.31.139:8888/members/test",
+     method: "post"
+   }).then(res => {
+     console.log("member", res.data);
+   });
+ }
+};
+</script>

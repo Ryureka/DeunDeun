@@ -8,6 +8,7 @@ import SignUp from './views/SignUp'
 import Notice from './views/Notice'
 import FAQ from './views/FAQ'
 import UserInfo from './views/UserInfo'
+import StoreDetail from './views/StoreDetail'
 
 Vue.use(Router)
 
@@ -53,6 +54,11 @@ export default new Router({
             path: '/UserInfo',
             name: 'UserInfo',
             component: UserInfo
+        },
+        {
+            path: '/StoreDetail/:storeNo',
+            name: 'StoreDetail',
+            component: StoreDetail
         }
     ]
 })

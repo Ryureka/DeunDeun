@@ -3,17 +3,16 @@
     id="get-in-touch"
     class="hide-overflow"
   >
-    <v-layout primary white--text>
+    <v-layout primary white--text class="pt-10">
         <v-container fluid>
             <!-- h1까지 지우고 하세요-->
-            <br>
 
             <div v-if="category==='all'">
                 <v-flex>
                     <!-- <v-card  class="mx-auto indigo darken-4"> -->
                         <v-row dense>
                             <v-col v-for="(item, i) in all" :key="i" cols="12" xs="4" sm="6" md="4">
-                                <v-card color="#000000" dark min-height="214"> 
+                                <v-card color="#000000" dark min-height="214"  @click="$router.push({name: 'StoreDetail', params: {storeNo: item.storeNo}})"> 
                                     <div class="d-flex flex-no-wrap justify-space-between">
                                         <div>
                                             <v-card-title class="headline" v-text="item.name"></v-card-title>
@@ -50,14 +49,16 @@ export default {
                     money: '20,000',
                     time: '30~40',
                     menu: '반앤반피자, 칠리새우피자',
-                    src: 'https://www.7thpizza.com/files/MENU/421ACDD2FBAA40849738116DBDF8F6DF.jpg'
+                    src: 'https://www.7thpizza.com/files/MENU/421ACDD2FBAA40849738116DBDF8F6DF.jpg',
+                    storeNo : '1'
                 },
                 {
                     name: '업텐브로피자-8호점',
                     money: '14,000',
                     time: '50~60',
                     menu: '브라더박스, 리얼게살쉬림프',
-                    src: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRIAD0LyU44tVsCePOQupghlHc8JGHALlPIyysJa-psAHcS51kW9Q'
+                    src: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRIAD0LyU44tVsCePOQupghlHc8JGHALlPIyysJa-psAHcS51kW9Q',
+                    storeNo : '2'
                 },
                 {
                     name: '롯데리아-대전한밭대점',

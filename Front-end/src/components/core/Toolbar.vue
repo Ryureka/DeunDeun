@@ -7,8 +7,8 @@
       fixed=""
       hide-on-scroll=""
     > 
-      <div>
-        <v-img :src="require('@/assets/logo_white.png')" width="100"></v-img>
+      <div style="cursor:pointer">
+        <v-img :src="require('@/assets/logo_white.png')" width="100" @click="$router.push({name: 'Home'})"></v-img>
       </div>
       <v-spacer></v-spacer>
       <HeadMenu/>
