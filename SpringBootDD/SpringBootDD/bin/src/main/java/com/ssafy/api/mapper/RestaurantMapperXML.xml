@@ -14,7 +14,7 @@
 	<select id="selectAll" resultType="Restaurant">
 		SELECT * FROM RESTAURANT;
 	</select>
-	<update id="updateRestaurantById" parameterType="Restaurant">
+	<update id="updateRestaurantById">
 		UPDATE RESTAURANT SET TEL=#{tel} WHERE RESTAURANT_ID=#{restaurant_id};  
 	</update>
 	<delete id="deleteOneById" parameterType="int">
