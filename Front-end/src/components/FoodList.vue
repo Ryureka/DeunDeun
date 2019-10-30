@@ -9,7 +9,6 @@
 
             <div v-if="category==='all'">
                 <v-flex>
-                    <!-- <v-card  class="mx-auto indigo darken-4"> -->
                         <v-row dense>
                             <v-col v-for="(item, i) in all" :key="i" cols="12" xs="4" sm="6" md="4">
                                 <v-card color="#000000" dark min-height="214"  @click="$router.push({name: 'StoreDetail', params: {storeNo: item.storeNo}})"> 
@@ -27,7 +26,6 @@
                                 </v-card>
                             </v-col>
                         </v-row>
-                    <!-- </v-card> -->
                 </v-flex>
             </div>
 
