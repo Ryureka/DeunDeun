@@ -25,7 +25,7 @@ public class MembersController {
 		return membersService.selectAllMembers();
 	}
 	
-	@RequestMapping(value = "/register", method = RequestMethod.POST)
+	@RequestMapping(value = "/regist", method = RequestMethod.POST)
 	public Members insertMember(@RequestBody Members member) {
 		membersService.insertMember(member);
 		return membersService.selectMemberById(member.getMember_id());

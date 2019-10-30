@@ -105,7 +105,7 @@ export default {
 
       axios({
         headers: { "Content-Type": "application/json" },
-        url: "http://localhost:8888/members/register",
+        url: "http://localhost:8888/members/regist",
         method: "post",
         data: JSON.stringify(body)
       }).then(res => {
