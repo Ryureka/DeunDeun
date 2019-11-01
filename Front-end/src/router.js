@@ -9,6 +9,7 @@ import Notice from './views/Notice'
 import FAQ from './views/FAQ'
 import UserInfo from './views/UserInfo'
 import StoreDetail from './views/StoreDetail'
+import FindIdPwd from './views/FindIdPwd'
 
 Vue.use(Router)
 
@@ -59,6 +60,11 @@ export default new Router({
             path: '/StoreDetail/:storeNo',
             name: 'StoreDetail',
             component: StoreDetail
-        }
+        },
+        {
+            path: '/FindIdPwd',
+            name: 'FindIdPwd',
+            component: FindIdPwd
+        },
     ]
 })
