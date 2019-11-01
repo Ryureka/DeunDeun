@@ -84,10 +84,12 @@
                         v-model="selected"
                         show-select
                         :headers="headers"
-                        :items="desserts"
+                        :items="foods"
                         item-key="name"
-                        group-by="category"
+                        group-by="국밥개수"
                         class="elevation-1"
+                        sort-by="price"
+                        sort-desc=""
                     ></v-data-table>
                 </v-card>
             </v-col>
@@ -97,6 +99,7 @@
   </section>
 </template>
 
+<!--
 <script>
   export default {
     data: () => ({
@@ -177,4 +180,54 @@
     }
 
   }
+</script>
+-->
+
+<script>
+import axios from "axios";
+export default {
+ name: "about",
+ data: function() {
+   return {
+      total_price : 0,
+      selection: 1,
+      selected: [],
+      headers: [
+        {
+          text: 'Menu',
+            align: 'left',
+            value: 'name'
+          },
+          { text: 'Price', value:'price'},
+          { text: '국밥', value: '국밥개수'},
+        ],
+     foods : [],
+   };
+ },
+ mounted() {
+   
+   var store = this.$route.params.storeNo;
+     axios.get("http://192.168.31.66:8888/food/"+store).then(res => {
+       this.foods = res.data
+
+      var step = 0;
+      res.data.forEach(food => {
+        var temp = 0;
+        temp = food.price / 7000;
+        res.data[step].국밥개수 = parseInt(temp);
+        step++;
+      });
+     console.log(res.data);
+   });
+ },
+ computed : {
+      totalCalculate : function() {
+        this.total_price = 0
+        this.selected.forEach(item => {
+          this.total_price += item.price
+        });
+        return this.total_price;
+      }
+    }
+};
 </script>

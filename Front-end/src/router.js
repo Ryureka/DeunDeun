@@ -9,6 +9,8 @@ import Notice from './views/Notice'
 import FAQ from './views/FAQ'
 import UserInfo from './views/UserInfo'
 import StoreDetail from './views/StoreDetail'
+import AllRestaurant from './views/Admin_allRestaurant'
+
 
 Vue.use(Router)
 
@@ -59,6 +61,11 @@ export default new Router({
             path: '/StoreDetail/:storeNo',
             name: 'StoreDetail',
             component: StoreDetail
+        },
+        {
+            path: '/Admin/AllStore',
+            name: 'AllRestaurant',
+            component: AllRestaurant
         }
     ]
 })
