@@ -22,12 +22,12 @@ public class MembersController {
 	@Autowired
 	public MembersService membersService;
 	
-	@RequestMapping(value = "/all", method = RequestMethod.GET)
-	public List<Members> tete() {
+	@RequestMapping(value = "/all", method = RequestMethod.POST)
+	public List<Members> selectAllMembers() {
 		return membersService.selectAllMembers();
 	}
 	
-	@RequestMapping(value = "/register", method = RequestMethod.POST)
+	@RequestMapping(value = "/regist", method = RequestMethod.POST)
 	public Members insertMember(@RequestBody Members member) {
 		membersService.insertMember(member);
 		return membersService.selectMemberById(member.getMember_id());
