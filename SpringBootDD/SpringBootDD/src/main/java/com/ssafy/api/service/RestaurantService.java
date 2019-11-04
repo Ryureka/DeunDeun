@@ -13,4 +13,5 @@ public interface RestaurantService {
 	public int delete(int restaurant_id);
 	public List<Restaurant> selectLowestPrice();
 	public List<Restaurant> searchRestaurant(double x, double y, int range);
+	public int countAllRestaurants();
 }

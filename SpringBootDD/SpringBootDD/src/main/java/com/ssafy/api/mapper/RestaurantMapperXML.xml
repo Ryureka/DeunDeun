@@ -14,7 +14,7 @@
 	<select id="selectAll" resultType="Restaurant">
 		SELECT * FROM RESTAURANT;
 	</select>
-	<update id="updateRestaurantById">
+	<update id="updateRestaurantById" parameterType="Restaurant">
 		UPDATE RESTAURANT SET TEL=#{tel} WHERE RESTAURANT_ID=#{restaurant_id};  
 	</update>
 	<delete id="deleteOneById" parameterType="int">
@@ -31,5 +31,7 @@
 			) as f 
 		on r.restaurant_id = f.restaurant_id;
 	</select>
-	
+	<select id="countAllRestaurants" resultType="int">
+		select count(*) from restaurant;
+	</select>
 </mapper>

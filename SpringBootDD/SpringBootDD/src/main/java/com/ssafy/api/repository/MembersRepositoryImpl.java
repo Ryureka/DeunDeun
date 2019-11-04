@@ -56,4 +56,10 @@ public class MembersRepositoryImpl implements MembersRepository {
 		return mapper.deleteMember(members_id);
 	}
 
+	@Override
+	public int countAllMembers() {
+		MembersMapper mapper = template.getMapper(MembersMapper.class);
+		return mapper.countAllMembers();
+	}
+
 }

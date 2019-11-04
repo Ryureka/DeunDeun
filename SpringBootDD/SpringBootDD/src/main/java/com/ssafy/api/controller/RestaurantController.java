@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -40,4 +41,16 @@ public class RestaurantController {
 			@RequestParam("range") int range) {
 		return service.searchRestaurant(x, y, range);
 	}
+	
+	@RequestMapping(value="/insert",method=RequestMethod.POST)
+	public Restaurant insertRestaurant(@RequestBody Restaurant restaurant) {
+		service.insertOne(restaurant);
+		return service.selectOneById(restaurant.getRestaurant_id());
+	}
+	
+	@RequestMapping(value="/count",method=RequestMethod.GET)
+	public int countAllRestaurants() {		
+		return service.countAllRestaurants();
+	}
+
 }

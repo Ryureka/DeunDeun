@@ -56,6 +56,12 @@ public class RestaurantRepositoryImpl implements RestaurantRepository{
 		return mapper.selectLowestPrice();
 	}
 
+	@Override
+	public int countAllRestaurants() {		
+		RestaurantMapper mapper=template.getMapper(RestaurantMapper.class);
+		return mapper.countAllRestaurants();
+	}
+
 
 	
 }

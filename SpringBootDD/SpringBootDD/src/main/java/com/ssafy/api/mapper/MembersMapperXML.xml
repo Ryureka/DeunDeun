@@ -3,7 +3,8 @@
 <mapper namespace="com.ssafy.api.mapper.MembersMapper">
 
 	<select id="selectAllMembers" resultType="Members">
-		SELECT * FROM MEMBERS;
+		# SELECT MEMBER_ID, NAME, NICKNAME, EMAIL, TEL, DATE_FORMAT(CREATE_AT, '%Y-%m-%d')as CREATE_AT FROM MEMBERS;
+		SELECT * FROM MEMBERS
 	</select>
 	
 	<select id="membersByType" parameterType="String" resultType="Members">
@@ -40,5 +41,8 @@
 	<delete id="deleteMember" parameterType="int">
 		DELETE FROM MEMBERS WHERE MEMBERS_ID = #{members_id};
 	</delete>
-
+	
+	<select id="countAllMembers" resultType="int">
+		select count(*) from members;
+	</select>
 </mapper>
