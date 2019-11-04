@@ -20,8 +20,8 @@ public class MembersController {
 	@Autowired
 	public MembersService membersService;
 	
-	@RequestMapping(value = "/test", method = RequestMethod.POST)
-	public List<Members> tete() {
+	@RequestMapping(value = "/all", method = RequestMethod.POST)
+	public List<Members> selectAllMembers() {
 		return membersService.selectAllMembers();
 	}
 	
