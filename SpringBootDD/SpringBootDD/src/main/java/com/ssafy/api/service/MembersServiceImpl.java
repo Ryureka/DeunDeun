@@ -47,4 +47,9 @@ public class MembersServiceImpl implements MembersService{
 	public int deleteMember(int members_id) {
 		return repo.deleteMember(members_id);
 	}
+
+	@Override
+	public int countAllMembers() {
+		return repo.countAllMembers();
+	}
 }

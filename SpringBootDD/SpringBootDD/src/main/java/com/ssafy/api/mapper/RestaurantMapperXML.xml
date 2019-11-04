@@ -31,5 +31,7 @@
 			) as f 
 		on r.restaurant_id = f.restaurant_id;
 	</select>
-	
+	<select id="countAllRestaurants" resultType="int">
+		select count(*) from restaurant;
+	</select>
 </mapper>

@@ -87,4 +87,9 @@ public class RestaurantServiceImpl implements RestaurantService {
 		return range * 360 / (2 * Math.PI * r * Math.cos(Math.toRadians(lat)));
 	}
 
+	@Override
+	public int countAllRestaurants() {
+		return repo.countAllRestaurants();
+	}
+
 }

@@ -12,4 +12,5 @@ public interface RestaurantMapper {
 	public int update(String tel);
 	public int delete(int restaurant_id);
 	public List<Restaurant> selectLowestPrice();
+	public int countAllRestaurants();
 }
