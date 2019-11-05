@@ -19,12 +19,12 @@
 	
 	<select id="selectMemberByEmail" parameterType="String" resultType="Members">
 		SELECT * FROM MEMBERS
-		WHERE EMAIL = #{email};
+		WHERE EAMIL = #{email};
 	</select>
 	
 	<insert id="insertMember" parameterType="Members">
-		INSERT INTO MEMBERS(name, nickname, email, password, tel, grade)
-		VALUES(#{name}, #{nickname}, #{email}, #{password}, #{tel}, #{grade});
+		INSERT INTO MEMBERS(name, nickname, email, password, tel, grade, create_at)
+		VALUES(#{name}, #{nickname}, #{email}, #{password}, #{tel}, #{grade}, #{create_at});
 	</insert>
 	
 	<update id="updateMember" parameterType="Members">

@@ -91,6 +91,15 @@ export default {
       passwordConfirm: ""
     };
   },
+  mounted() {
+    axios({
+      headers: { "Content-Type": "application/json" },
+      url: "http://localhost:8888/members/test",
+      method: "post"
+    }).then(res => {
+      console.log("member", res.data);
+    });
+  },
   methods: {
     register: function() {
       var body = {
@@ -102,10 +111,9 @@ export default {
         grade: "user",
         create_at: new Date()
       };
-
       axios({
         headers: { "Content-Type": "application/json" },
-        url: "http://localhost:8888/members/register",
+        url: "http://localhost:8888/members/regist",
         method: "post",
         data: JSON.stringify(body)
       }).then(res => {
@@ -113,15 +121,6 @@ export default {
       });
       console.log("mem", body);
     }
-  },
-  mounted() {
-    axios({
-      headers: { "Content-Type": "application/json" },
-      url: "http://localhost:8888/members/test",
-      method: "post"
-    }).then(res => {
-      console.log("member", res.data);
-    });
   }
 };
 </script>

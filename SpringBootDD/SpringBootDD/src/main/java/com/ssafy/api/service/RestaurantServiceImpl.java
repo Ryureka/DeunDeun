@@ -59,6 +59,7 @@ public class RestaurantServiceImpl implements RestaurantService {
 				searchList.add(restaurant);
 			}
 		}
+		System.out.println("주변 상가 개수 : "+searchList.size());
 		return searchList;
 	}
 
