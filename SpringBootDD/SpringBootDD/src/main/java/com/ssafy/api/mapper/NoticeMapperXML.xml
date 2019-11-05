@@ -17,14 +17,15 @@
 	</select>
 	
 	<insert id="insertNotice" parameterType="Notice">
-		INSERT INTO NOTICE(MEMBER_ID, CONTENTS)
-		VALUES(#{member_id}, #{contents});
+		INSERT INTO NOTICE(MEMBER_ID, TITLE , CONTENTS)
+		VALUES(#{member_id}, #{title}, #{contents});
 	</insert>
 	
 	<update id="updateNotice" parameterType="Notice">
 		UPDATE NOTICE
 		SET
 		CONTENTS = #{contents},
+		TITLE = #{title}
 		WHERE NOTICE_ID = #{notice_id};
 	</update>
 	
