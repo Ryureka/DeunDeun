@@ -35,7 +35,7 @@
               Services
             </base-heading>
 
-            <base-text class="mb-5">
+            <base-text class="mb-5 white--text">
               대학가 주변 <br>
               <strong>가성비</strong> 좋은 음식점을 추천해드립니다
             </base-text>

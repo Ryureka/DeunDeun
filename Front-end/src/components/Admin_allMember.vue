@@ -62,7 +62,7 @@
     mounted() {
         axios({
             url: "http://192.168.31.66:8888/members/all",
-            method: "get",
+            method: "post",
             params: {
             }
         }).then(res => {
