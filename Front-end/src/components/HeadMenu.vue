@@ -1,24 +1,43 @@
 <template>
   <div>
     <v-btn
-      v-for="(item, i) in items.slice(0, large ? items.length : 3)"
-      :key="i"
       fab
       class="ma-2"
       small
-      :large="large"
       color="transparent"
-      :to="{name:item.page}"
+      @click="$router.push({name: 'FAQ'})"
     >
-      <v-icon
-        dark
-        v-text="item.icon"
-      />
+     <v-icon>mdi-help-circle-outline</v-icon>
+    </v-btn>
+
+    <v-btn
+      fab
+      class="ma-2"
+      small
+      color="transparent"
+      @click="$router.push({name: 'Notice'})"
+    >
+     <v-icon>mdi-alert-decagram</v-icon>
+    </v-btn>
+    
+    <v-btn
+      fab
+      class="ma-2"
+      small
+      color="transparent"
+      @click="$router.push({name: 'UserInfo'})"
+      v-if="this.getIsLogin ===true"
+    >
+     <v-icon>mdi-account</v-icon>
     </v-btn>
   </div>
 </template>
 
 <script>
+
+import { mapState } from "vuex";
+
+
 export default {
   props: {
     large: {
@@ -26,25 +45,13 @@ export default {
       default: false
     }
   },
-
-  data: () => ({
-    items: [
-      {
-        name: 'FAQ',
-        icon: 'mdi-help-circle-outline',
-        page: 'FAQ'
-      },
-      {
-        name: 'Notice',
-        icon: 'mdi-alert-decagram',
-        page: 'Notice'
-      },
-      {
-        name: 'Account',
-        icon: 'mdi-account',
-        page: 'UserInfo'
-      }
-    ]
-  })
+  computed: {
+    ...mapState({
+        getEmail : state => state.User.email,
+        getNickname : state => state.User.nickname,
+        getGrade: state=> state.User.grade,
+        getIsLogin: state=> state.isLogin
+    })
+  },
 }
 </script>

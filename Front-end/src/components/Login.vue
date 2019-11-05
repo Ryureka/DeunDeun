@@ -37,17 +37,6 @@
                   email:email,
                   password:password
                 })">Login</v-btn>
-                <table>
-                  <tr>
-                    asdf
-                  </tr>
-                  <tr>
-                    {{getEmail}}
-                  </tr>
-                  <tr>
-                    {{getGrade}}
-                  </tr>
-                </table>
               </v-card-actions>
             </v-card>
         </v-container>

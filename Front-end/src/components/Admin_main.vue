@@ -13,7 +13,7 @@
           >
             <v-list-item-content>
               <v-list-item-title class="title">관리자</v-list-item-title>
-              <v-list-item-subtitle>admin@gmail.com</v-list-item-subtitle>
+              <v-list-item-subtitle>{{getEmail}}</v-list-item-subtitle>
             </v-list-item-content>
           </v-list-item>
         </v-list>
@@ -58,6 +58,13 @@
             <v-icon>mdi-store</v-icon>
           </v-list-item-icon>
           <v-list-item-title>사용자 화면</v-list-item-title>
+        </v-list-item>
+
+        <v-list-item @click="logout">
+          <v-list-item-icon>
+            <v-icon>mdi-exit-to-app</v-icon>
+          </v-list-item-icon>
+          <v-list-item-title>로그아웃</v-list-item-title>
         </v-list-item>
 
       </v-list>
@@ -136,6 +143,7 @@
 </template>
 
 <script>
+import { mapState, mapActions } from "vuex";
 import axios from "axios";
  const gradients = [
     ['#222'],
@@ -176,6 +184,17 @@ export default {
     this.Members = res.data;
     });
     
- }
+ },
+  computed: {
+    ...mapState({
+        getEmail : state => state.User.email,
+        getNickname : state => state.User.nickname,
+        getGrade: state=> state.User.grade,
+        getIsLogin: state=> state.isLogin
+    })
+  },
+  methods:{
+    ...mapActions(["logout"])
+  },
 };
 </script>
