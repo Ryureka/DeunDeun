@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.ssafy.api.dto.Auth;
 import com.ssafy.api.dto.Members;
 import com.ssafy.api.service.MembersService;
 
@@ -33,22 +34,45 @@ public class MembersController {
 		return membersService.selectMemberById(member.getMember_id());
 	}
 	
-	@RequestMapping(value="/login",method=RequestMethod.POST)
-	public void Login(@RequestBody Members member) {
-		Members existMember=membersService.selectMemberByEmail(member.getEmail());
-		if(existMember!=null) {
-			if(member.getPassword().equals(existMember.getPassword())) {
-//				session.setAttribute("email",member.getEmail());
-//				session.setAttribute("grade",member.getGrade());
-//				return ""; 
-			}
-		}
-		System.out.println(member.getEmail());
-//		return "abc";
-	}
-	
 	@RequestMapping(value = "/count", method = RequestMethod.GET)
 	public int countAllMembers() {
 		return membersService.countAllMembers();
+	}
+	
+	
+	@RequestMapping(value="/login",method=RequestMethod.POST)
+	public Auth Login(@RequestBody Members member) {
+		System.out.println(member);	
+		Members existMember= membersService.selectMemberByEmail(member.getEmail());
+		Auth auth=new Auth();
+		if(existMember!=null) {
+			if(existMember.getPassword().equals(member.getPassword())){
+				String s=existMember.getMember_id()+","+existMember.getName()+","+existMember.getNickname()+","+existMember.getEmail()+","
+						+existMember.getTel()+","+existMember.getGrade()+","+existMember.getCreate_at();
+				auth.setDDToken(s);
+			}else {
+				auth.setDDToken(",,,,,,,passwordError");
+				System.out.println(",,,,,,,PWError");
+			}
+		}else {
+			auth.setDDToken("userError");
+		}
+		return auth;
+	}
+	
+	
+	@RequestMapping(value="/check",method=RequestMethod.POST)
+	public String Check(@RequestBody Members member) {
+		System.out.println(member);	
+		Members existMember= membersService.selectMemberByEmail(member.getEmail());
+		if(existMember!=null) {
+			if(existMember.getPassword().equals(member.getPassword())){
+				return "Success";
+			}else {
+				return "passwordError";
+			}
+		}else {
+			return "userError";
+		}
 	}
 }
