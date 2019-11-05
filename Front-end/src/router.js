@@ -69,19 +69,20 @@ export default new Router({
             name: 'FindIdPwd',
             component: FindIdPwd
         },
-        path: '/Admin/AllStore',
-        name: 'AllRestaurant',
-        component: AllRestaurant
-    },
-    {
-        path: '/Admin/AllMember',
-        name: 'AllMember',
-        component: AllMember
-    },
-    {
-        path: '/Admin/AdminMain',
-        name: 'AdminMain',
-        component: AdminMain
-    }
-]
+        {
+            path: '/Admin/AllStore',
+            name: 'AllRestaurant',
+            component: AllRestaurant
+        },
+        {
+            path: '/Admin/AllMember',
+            name: 'AllMember',
+            component: AllMember
+        },
+        {
+            path: '/Admin/AdminMain',
+            name: 'AdminMain',
+            component: AdminMain
+        }
+    ]
 })
