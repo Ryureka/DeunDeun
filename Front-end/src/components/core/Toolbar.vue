@@ -1,33 +1,26 @@
 <template>
-  <v-toolbar
-    v-scroll="onScroll"
-    :color="isTransparent ? 'transparent' : '#4e5381e6'"
-    app
-    flat
-  > 
   <div>
-      <v-img :src="require('@/assets/logo_white.png')" width="120"/>
-  </div>
+    <v-app-bar
+      color="indigo darken-4"
+      dense
+      dark
+      fixed=""
+      hide-on-scroll=""
+    > 
+      <div style="cursor:pointer">
+        <v-img :src="require('@/assets/logo_white.png')" width="100" @click="$router.push({name: 'Home'})"></v-img>
+      </div>
+      <v-spacer></v-spacer>
+      <HeadMenu/>
 
-    <v-spacer />
-    <SocialMedia />
-  </v-toolbar>
+    </v-app-bar>
+  </div>
 </template>
 
 <script>
 export default {
   components: {
-    SocialMedia: () => import('@/components/SocialMedia')
-  },
-
-  data: () => ({
-    isTransparent: true
-  }),
-
-  methods: {
-    onScroll () {
-      this.isTransparent = window.pageYOffset < 200
-    }
+    HeadMenu : () => import('@/components/HeadMenu')
   }
 }
 </script>

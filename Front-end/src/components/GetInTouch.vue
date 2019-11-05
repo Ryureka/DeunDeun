@@ -20,6 +20,8 @@
         xs12
         md6
         pa-5
+        secondary
+        white--text
       >
         <base-bubble-1 />
         <base-heading class="mb-5">

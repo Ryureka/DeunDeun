@@ -1,12 +1,12 @@
 <template>
   <div>
     <v-btn
-      v-for="(item, i) in items.slice(0, large ? items.length : 3)"
+      v-for="(item, i) in items.slice(0, small ? items.length : 5)"
       :key="i"
       fab
       class="ma-2"
-      :large="large"
-      color="info"
+      :small="small"
+      color="secondary"
     >
       <v-icon
         dark
@@ -19,7 +19,7 @@
 <script>
 export default {
   props: {
-    large: {
+    small: {
       type: Boolean,
       default: false
     }

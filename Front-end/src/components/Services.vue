@@ -3,7 +3,7 @@
     id="services"
     class="hide-overflow"
   >
-    <v-layout accent>
+    <v-layout info>
       <v-flex
         hidden-sm-and-down
         md6
@@ -18,6 +18,8 @@
         md6
         text-xs-center
         pa-5
+        primary
+        white--text
       >
         <v-layout
           align-center
@@ -33,7 +35,7 @@
               Services
             </base-heading>
 
-            <base-text class="mb-5">
+            <base-text class="mb-5 white--text">
               대학가 주변 <br>
               <strong>가성비</strong> 좋은 음식점을 추천해드립니다
             </base-text>
