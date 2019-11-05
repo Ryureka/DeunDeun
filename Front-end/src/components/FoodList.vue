@@ -6,17 +6,20 @@
     <v-layout primary white--text class="pt-10">
         <v-container fluid>
             <!-- h1까지 지우고 하세요-->
-
-            <div v-if="category==='all'">
+            <v-row dense="">
+                <v-col cols="12" md="12">
+                    <div id="map"></div>
+                </v-col>   
+            </v-row>
                 <v-flex>
                         <v-row dense>
-                            <v-col v-for="(item, i) in all" :key="i" cols="12" xs="4" sm="6" md="4">
-                                <v-card color="#000000" dark min-height="214"  @click="$router.push({name: 'StoreDetail', params: {storeNo: item.storeNo}})"> 
+                            <v-col v-for="(item, i) in restaurant" :key="i" cols="12" xs="4" sm="6" md="4">
+                                <v-card class="cyan darken-1"   dark min-height="214"  @click="$router.push({name: 'StoreDetail', params: {storeNo: item.restaurant_id}})"> 
                                     <div class="d-flex flex-no-wrap justify-space-between">
                                         <div>
                                             <v-card-title class="headline" v-text="item.name"></v-card-title>
-                                            <v-card-subtitle>최소주문금액 {{item.money}}원<br>배달시간 {{item.time}}분</v-card-subtitle>
-                                            <v-card-subtitle>인기메뉴 {{item.menu}}</v-card-subtitle>
+                                            <v-card-subtitle>대표메뉴 가격 {{item.price}} 원<br>영업시간  {{item.operation_hour}}분</v-card-subtitle>
+                                            <v-card-subtitle>전화번호 {{item.tel}}</v-card-subtitle>
                                         </div>
 
                                         <v-avatar class="ma-3" size="135" tile>
@@ -27,127 +30,182 @@
                             </v-col>
                         </v-row>
                 </v-flex>
-            </div>
-
-
-
         </v-container>
     </v-layout>
   </section>
 </template>
 
 <script>
+import axios from "axios";
+import gmapsInit from "../utils/gmaps.js";
+
 export default {
-  data:() => {
+  name: "HelloWorld",
+  data: function() {
     return {
-      category: 'no',
-      all: [
-        {
-                    name: '7번가피자 노은점',
-                    money: '20,000',
-                    time: '30~40',
-                    menu: '반앤반피자, 칠리새우피자',
-                    src: 'https://www.7thpizza.com/files/MENU/421ACDD2FBAA40849738116DBDF8F6DF.jpg',
-                    storeNo : '1'
-                },
-                {
-                    name: '업텐브로피자-8호점',
-                    money: '14,000',
-                    time: '50~60',
-                    menu: '브라더박스, 리얼게살쉬림프',
-                    src: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRIAD0LyU44tVsCePOQupghlHc8JGHALlPIyysJa-psAHcS51kW9Q',
-                    storeNo : '2'
-                },
-                {
-                    name: '롯데리아-대전한밭대점',
-                    money: '11,000',
-                    time: '35~45',
-                    menu: '오징어버거세트, DoubleX2세트',
-                    src: 'http://adventure.lotteworld.com/image/2018/6/20180620024530213_574.jpg'
-                },
-                {
-                    name: '맘스터치 한밭대점',
-                    money: '15,000',
-                    time: '50~60',
-                    menu: '언빌리버블버거, 인크레더블버거',
-                    src: 'http://img1.tmon.kr/cdn3/deals/2019/08/13/2342957066/original_2342957066_front_ff481_1565686275production.jpg'
-                },
-                {
-                    name: '송탄오공손 부대찌개',
-                    money: '19,000',
-                    time: '35~45',
-                    menu: '송탄 오공손 부대찌개',
-                    src: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRb5wEaBM8g1VAcvLMIeaDCnhxdLd1gDUbEXGbKw9Kp_zhL9wTq3A'
-                },
-                {
-                    name: '소소한밥상',
-                    money: '16,000',
-                    time: '46~56',
-                    menu: '제육볶음, 콩나물불고기',
-                    src: 'https://mblogthumb-phinf.pstatic.net/MjAxNzA2MjhfMjQz/MDAxNDk4NjI2NDc5ODgz.cBu2zv4zs5Q4gmJI7_zDwz9DtkwDIsCD7XWwzRFIJIgg.abJLiHcQ6L-_rcJfHPUWuShyPFwE1j6ZoSmAazATgg8g.JPEG.younju0911/image_2815000671498626169525.jpg?type=w800'
-                },
-                {
-                    name: '던킨도너츠 대전노은점',
-                    money: '10,000',
-                    time: '56~66',
-                    menu: '버라이어티6EA, 블랙버블라떼',
-                    src: 'http://item.ssgcdn.com/93/76/32/item/0000005327693_i1_1200.jpg'
-                },
-                {
-                    name: 'HOTDOGLAB N SUDA',
-                    money: '9,900',
-                    time: '45~55',
-                    menu: '더블세트, 한 끼 샐러드세트',
-                    src: 'https://t1.daumcdn.net/cfile/tistory/992B31465D59142038'
-                },
-                {
-                    name: '콩불파불',
-                    money: '16,000',
-                    time: '46~56',
-                    menu: '돼지갈비찜, 묵은지갈비찜',
-                    src: 'https://mblogthumb-phinf.pstatic.net/MjAxNzA4MTFfMTIx/MDAxNTAyNDU3MDE2ODM5.jPro0XGiL6r1j_lL2n10XFFUJYescqMiFUdY0Uub0Vwg.W29rLAnjGaq8RFmG9ge-BdVEisYO0u5NVzneCuV_AN8g.JPEG.pa6385/2017-08-11-18-50-26.jpg?type=w800'
-                },
-                {
-                    name: '집으로돼지&갈비 목원대점',
-                    money: '10,000',
-                    time: '47~57',
-                    menu: '삼겹 SET, 삼겹살',
-                    src: 'http://kookmingalbi.com/files/attach/images/2612/014/006/585b4b096b1e230248e6e71425efb778.jpg'
-                },
-                {
-                    name: '교촌치킨 노은1지구점',
-                    money: '15,000',
-                    time: '47~57',
-                    menu: '교촌오리지날, 교촌레드오리지날',
-                    src: 'http://www.kyochonfnb.com/ADM_uploadFiles/EDITOR/R658x0.jpg'
-                },
-                {
-                    name: '처갓집양념치킨 한밭대점',
-                    money: '13,000',
-                    time: '43~53',
-                    menu: '더화이트골드치즈, 더화이트레몬파채',
-                    src: 'http://www.cheogajip.co.kr/theme/v3/img/main_menu_chicken_on.png'
-                },
-                {
-                    name: '짜장1번가',
-                    money: '5,000',
-                    time: '46~56',
-                    menu: '싱글 1, 코스 1',
-                    src: 'http://kormedi.com/wp-content/uploads/2019/06/432212_5701.jpg',
-                },
-                {
-                    name: '노은각',
-                    money: '4,500',
-                    time: '27~37',
-                    menu: '돈짬뽕, 속풀이짬뽕',
-                    src: 'https://cdn.imweb.me/thumbnail/20190615/26b709dad30f3.jpg'
-                }
-      ],
-    }
+      now_x: "",
+      now_y: "",
+      restaurant: {}
+    };
   },
-  mounted() {
-    this.category = this.$route.params.category
+  props: {
+    msg: String
+  },
+  created() {},
+  async mounted() {
+    
+    // url 파라미터별 가게정보
+    var cate = this.$route.params.category;
+    var cateNum = 0;
+
+    if (cate == 'one') {
+        cateNum = 1
+    }else if(cate == 'franchise'){
+        cateNum = 2
+    }else if(cate == 'chicken'){
+        cateNum = 3
+    }else if(cate == 'pizza'){
+        cateNum = 4
+    }else if(cate == 'chinese'){
+        cateNum = 5
+    }else if(cate == 'korean'){
+        cateNum = 6
+    }else if(cate == 'japanese'){
+        cateNum = 7
+    }else if(cate == 'pig'){
+        cateNum = 8
+    }else if(cate == 'night'){
+        cateNum = 9
+    }else if(cate == 'ddeok'){
+        cateNum = 10
+    }else if(cate == 'cafe'){
+        cateNum = 11
+    }
+
+    var urltest= ""
+    
+    if(cate != 'all'){
+        urltest = "http://192.168.31.66:8888/category/"+cateNum+"/";
+    }else {
+        urltest = "http://192.168.31.66:8888/restaurant/here";
+    }
+
+    // 구글맵스 지도 객체 생성
+    let map;
+    let myMarker;
+    try {
+      const google = await gmapsInit();
+      const geocoder = new google.maps.Geocoder();
+      map = new google.maps.Map(document.getElementById("map"));
+    } catch (error) {
+      console.error(error);
+    }
+
+    // 현재 위치 가져오기
+    axios({
+      url: "https://www.googleapis.com/geolocation/v1/geolocate",
+      method: "post",
+      params: {
+        key: "AIzaSyBjg8cR_tJB7iQCXQHpxzAZNERPK1sR5JQ"
+      }
+    }).then(res => {
+      console.log("geolocation ", res);
+      this.now_x = res.data.location.lng;
+      this.now_y = res.data.location.lat;
+      // 현재 위치를 저장할 객체 생성
+      var myPlace = new google.maps.LatLng(
+        // this.now_y, this.now_x
+        36.3491011, 127.2983324
+        );
+      // 맵 설정
+      map.setCenter(myPlace);
+      map.setZoom(18);
+      // 내 위치 마커
+      var myMarker = new google.maps.Marker();
+      myMarker.setPosition(myPlace);
+      myMarker.setMap(map);
+      // 내 위치 마커 이미지
+      var markerImage = new google.maps.MarkerImage(
+        "https://p7.hiclipart.com/preview/540/986/563/computer-icons-walking-clip-art-people-icon-transparent.jpg",
+        null,
+        null,
+        null,
+        new google.maps.Size(38, 38)
+      );
+      // 내 위치 마커 설정
+      myMarker.setIcon(markerImage);
+      myMarker.setAnimation(google.maps.Animation.DROP);
+
+      // 주변 상가 객체 가져오기
+      axios({
+        url: urltest,
+        method: "get",
+        params: {
+          // lon: this.now_x,
+          // lat: this.now_y,
+          lon: 127.2983324,
+          lat: 36.3491011,
+          range: 800
+        }
+      }).then(res => {
+        this.restaurant = res.data;  
+        console.log("주변", this.now_x + ", " + this.now_y);
+        console.log("주변 상가", res.data);
+        res.data.forEach(restaurant => {
+          // 주변 상가 객체
+          var resPlace = new google.maps.LatLng(
+            restaurant.location_y,
+            restaurant.location_x
+          );
+          // 주변 상가 마커
+          var resMarker = new google.maps.Marker();
+          resMarker.setPosition(resPlace);
+          resMarker.setMap(map);
+          // 상가 마커 이미지
+          var resImage = new google.maps.MarkerImage(
+            "https://image.winudf.com/v2/image/Y29tLmhvYmlnLnR0dWtiYWVnaV9pY29uXzE1Mjk5Mjg0NjFfMDQ3/icon.png?w=170&fakeurl=1",
+            null,
+            null,
+            null,
+            new google.maps.Size(38, 38)
+          );
+          // 상가 마커 설정
+          resMarker.setIcon(resImage);
+          window.setTimeout(function() {
+            resMarker.setAnimation(google.maps.Animation.DROP);
+          }, restaurant.restaurant_id);
+          // 마커의 정보 정의
+          var contentString =
+            '<div id = '+'restaurant'+restaurant.restaurant_id+'>' 
+            +'<p>'
+            +restaurant.name
+            +'</p>'
+            +'<p>'
+            +'영업시간 : '
+            +restaurant.operation_hour
+            +'</p>'
+            + "</div>";
+          // 마커 객체에 정보 주입  
+          var markerInfo = new google.maps.InfoWindow({
+            content : contentString
+          });
+          // 마커 클릭 이벤트
+          resMarker.addListener('click', function(){
+            markerInfo.open(map, resMarker)
+          })
+        });
+      });
+    });
   }
-}
+};
 </script>
 
+
+<style>
+
+#map {
+  height: 300px;
+}
+
+p{color: black}
+</style>

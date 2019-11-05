@@ -10,6 +10,9 @@ import FAQ from './views/FAQ'
 import UserInfo from './views/UserInfo'
 import StoreDetail from './views/StoreDetail'
 import FindIdPwd from './views/FindIdPwd'
+import AllRestaurant from './views/Admin_allRestaurant'
+import AllMember from './views/Admin_allMember'
+import AdminMain from './views/Admin_main'
 
 Vue.use(Router)
 
@@ -66,5 +69,19 @@ export default new Router({
             name: 'FindIdPwd',
             component: FindIdPwd
         },
-    ]
+        path: '/Admin/AllStore',
+        name: 'AllRestaurant',
+        component: AllRestaurant
+    },
+    {
+        path: '/Admin/AllMember',
+        name: 'AllMember',
+        component: AllMember
+    },
+    {
+        path: '/Admin/AdminMain',
+        name: 'AdminMain',
+        component: AdminMain
+    }
+]
 })

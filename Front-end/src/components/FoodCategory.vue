@@ -82,7 +82,7 @@
                 </v-img>
             </v-card>
             
-            <v-card id="cards__rect_small_under" @click="$router.push({name: 'FoodList', params: {category: 'burger'}})">
+            <v-card id="cards__rect_small_under" @click="$router.push({name: 'FoodList', params: {category: 'franchise'}})">
                 <v-img
                 id="cards__image__small"
                 :src="require('@/assets/Category/Franchise.jpg')"

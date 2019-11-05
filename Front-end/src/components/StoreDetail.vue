@@ -21,40 +21,32 @@
                             src="https://cdn.vuetifyjs.com/images/cards/cooking.png"
                             ></v-img>
 
-                            <v-card-title>7번가 피자 노은점</v-card-title>
+                            <v-card-title>{{store.name}}</v-card-title>
 
                             <v-card-text>
                             <v-row
                                 align="center"
                                 class="mx-0"
                             >
-                                <v-rating
-                                :value="4.5"
-                                color="amber"
-                                dense
-                                half-increments
-                                readonly
-                                size="14"
-                                ></v-rating>
-
-                                <div class="grey--text ml-4">4.5 (413)</div>
                             </v-row>
 
                             <div class="my-4 subtitle-1 black--text">
                                 영업중
                             </div>
 
-                            <div>최소 주문 금액 : 20000원 <br> 배달 시간 :30분 ~ 40분 </div>
+                            <div>전화 번호 : {{store.tel}}<br> 영업시간 : {{store.operation_hour}}</div>
                             </v-card-text>
 
                             <v-divider class="mx-4"></v-divider>
 
                             <v-card-title>장바구니</v-card-title>
+                            
                             <v-card-text>
-                              
+                              1국밥 = 7,000원  
                             </v-card-text>
                             <v-card-text>
-                              현재 금액 : {{totalCalculate}} 원
+                              현재 금액 : {{totalCalculate}} 원<br>
+                              국밥 개수 : {{CalcuGB}} 개
                             </v-card-text>
                             <v-card-text>
                             <v-chip-group
@@ -84,10 +76,12 @@
                         v-model="selected"
                         show-select
                         :headers="headers"
-                        :items="desserts"
+                        :items="foods"
                         item-key="name"
-                        group-by="category"
+                        group-by="국밥개수"
                         class="elevation-1"
+                        sort-by="price"
+                        sort-desc=""
                     ></v-data-table>
                 </v-card>
             </v-col>
@@ -97,6 +91,7 @@
   </section>
 </template>
 
+<!--
 <script>
   export default {
     data: () => ({
@@ -177,4 +172,67 @@
     }
 
   }
+</script>
+-->
+
+<script>
+import axios from "axios";
+export default {
+ name: "about",
+ data: function() {
+   return {
+      total_price : 0,
+      selection: 1,
+      selected: [],
+      headers: [
+        {
+          text: 'Menu',
+            align: 'left',
+            value: 'name'
+          },
+          { text: 'Price', value:'price'},
+          { text: '국밥', value: '국밥개수'},
+        ],
+     foods : [],
+     store:[],
+     GB : 0,
+   };
+ },
+ mounted() {
+   
+
+   var store = this.$route.params.storeNo;
+     axios.get("http://192.168.31.66:8888/food/"+store).then(res => {
+       this.foods = res.data
+
+      var step = 0;
+      res.data.forEach(food => {
+        var temp = 0;
+        temp = food.price / 7000;
+        res.data[step].국밥개수 = parseInt(temp);
+        step++;
+      });
+      console.log(res.data);
+
+      axios.get("http://192.168.31.66:8888/restaurant/"+store).then(res =>{
+        this.store = res.data;
+      });
+   });
+ },
+ computed : {
+      totalCalculate : function() {
+        this.total_price = 0
+        this.selected.forEach(item => {
+          this.total_price += item.price
+        });
+        return this.total_price;
+      },
+
+      CalcuGB : function(){
+        var total_price = this.total_price;
+        this.GB = total_price/7000;
+        return parseInt(this.GB);
+      }
+    }
+};
 </script>
