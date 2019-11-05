@@ -96,6 +96,7 @@
 </template>
 
 <script>
+import { mapState } from "vuex";
 import axios from "axios";
 export default {
  name: "about",
@@ -116,6 +117,7 @@ export default {
      foods : [],
      store:[],
      GB : 0,
+     favorite_id: 0
    };
  },
  mounted() {
@@ -138,8 +140,12 @@ export default {
       this.store = res.data;
     });
 
-    axios.get("http://192.168.31.66:8888/").then(res =>{
-      if(res.data == null){
+    var store = this.$route.params.storeNo;
+    var member = this.getMemberId;
+  
+    axios.get("http://192.168.31.66:8888/favorite/member/"+member+"/restaurant/"+store).then(res =>{
+      this.favorite_id = res.data.favorite_id;
+      if(res.data == ""){
           document.getElementById("like_none_Btn").classList.remove("d-none");
           document.getElementById("like_Btn").classList.add("d-none");
       }else{
@@ -162,23 +168,44 @@ export default {
         var total_price = this.total_price;
         this.GB = total_price/7000;
         return parseInt(this.GB);
-      }
+      },
+
+       ...mapState({
+        getMemberId : state => state.User.member_id,
+        getEmail : state => state.User.email,
+        getNickname : state => state.User.nickname,
+        getGrade: state=> state.User.grade,
+        getIsLogin: state=> state.isLogin
+    })
   },
   methods:{
 
     like :function(){
       var store = this.$route.params.storeNo;
-      var member = "loucks@naver.com"
+      var member = this.getMemberId;
+
+      var body ={
+        member_id : member,
+        restaurant_id : store
+      }
       axios({
        headers: { "Content-Type": "application/json" },
-       url: "http://192.168.31.139:8888/"+"/regist",
+       url: "http://192.168.31.66:8888/favorite/insert",
        method: "post",
+       data: JSON.stringify(body)
       })
       document.getElementById("like_none_Btn").classList.add("d-none");
       document.getElementById("like_Btn").classList.remove("d-none");
     },
 
     dislike: function(){
+      var favorite_id  = this.favorite_id;
+      axios({
+        headers: { "Content-Type": "application/json" },
+        url: "http://192.168.31.66:8888/favorite/delete",
+        method: "delete",
+        params: {favorite_id: favorite_id}
+      })
       document.getElementById("like_Btn").classList.add("d-none");
       document.getElementById("like_none_Btn").classList.remove("d-none");
     }

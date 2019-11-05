@@ -8,7 +8,7 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
   state:{ //data
-      User:{name:'',nickname:'',email:'',tel:'',grade:'',create_at:''},
+      User:{member_id:'',name:'',nickname:'',email:'',tel:'',grade:'',create_at:''},
       isLogin: false,
       isLoginError: false,
   },
@@ -18,7 +18,7 @@ export default new Vuex.Store({
   actions:{
     login({state,dispatch},loginObj){
       axios
-      .post("http://localhost:8765/members/login",loginObj)
+      .post("http://192.168.31.66:8765/members/login",loginObj)
       .then(res=>{
         console.log(res);
         document.cookie="ddtoken="+res.data.ddtoken
@@ -32,12 +32,18 @@ export default new Vuex.Store({
           dispatch('getUserInfo')
           dispatch('loginSuccess')
           console.log(state.isLogin);
-          router.push({name:'Home'})
+          if(state.User.grade == "user"){
+            router.push({name:'Home'})
+          }else if(state.User.grade == "admin"){
+            router.push({name:'AdminMain'})
+          }
         }
       })
     },
     logout({state}){
+      alert("로그아웃 되었습니다")
       document.cookie="ddtoken="
+      state.User.member_id=''
       state.User.name=''
       state.User.nickname=''
       state.User.email=''
@@ -45,31 +51,34 @@ export default new Vuex.Store({
       state.User.grade=''
       state.User.create_at=''
       state.isLogin=false
+      router.push({name:'Home'})
     },
     getUserInfo({state}){
-      let name=document.cookie.split("=")[1].split(".").length==1?
-          '':document.cookie.split("=")[1].split(".")[0]
-      let nickname=document.cookie.split("=")[1].split(".")[1]
-      let email=document.cookie.split("=")[1].split(".")[2]
-      let tel=document.cookie.split("=")[1].split(".")[3]
-      let grade=document.cookie.split("=")[1].split(".")[4]
-      let create_at=document.cookie.split("=")[1].split(".")[5]
-      let isLogin=document.cookie.split("=")[1].split(".")[6]
+      let member_id=document.cookie.split("=")[1].split(",").length==1?
+          '':document.cookie.split("=")[1].split(",")[0]
+      let name=document.cookie.split("=")[1].split(",")[1]
+      let nickname=document.cookie.split("=")[1].split(",")[2]
+      let email=document.cookie.split("=")[1].split(",")[3]
+      let tel=document.cookie.split("=")[1].split(",")[4]
+      let grade=document.cookie.split("=")[1].split(",")[5]
+      let create_at=document.cookie.split("=")[1].split(",")[6]
+      let isLogin=document.cookie.split("=")[1].split(",")[7]
+      state.User.member_id=member_id
       state.User.name=name
       state.User.nickname=nickname
       state.User.email=email
       state.User.tel=tel
       state.User.grade=grade
       state.User.create_at=create_at
-      state.isLogin=isLogin==="true"?true:false
+      state.isLogin=isLogin
     },
     loginError({state}){
       state.isLogin=false
-      document.cookie=document.cookie+".false"
+      document.cookie=document.cookie+",false"
     },
     loginSuccess({state}){
       state.isLogin=true
-      document.cookie=document.cookie+".true"
+      document.cookie=document.cookie+",true"
     }
   }
 })

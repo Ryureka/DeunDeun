@@ -47,9 +47,15 @@
               &nbsp;시작하기&nbsp;
             </v-btn>
 
-            <v-btn  color="secondary" rounded class="mt-4 ml-5" :to="{name:'Login'}">
+            <v-btn v-if="this.getIsLogin===false"  color="secondary" rounded class="mt-4 ml-5" :to="{name:'Login'}">
               &nbsp;로그인&nbsp;
             </v-btn>
+            
+            <v-btn v-if="this.getIsLogin==true"  color="secondary" rounded class="mt-4 ml-5" @click="logout">
+              &nbsp;로그아웃&nbsp;
+            </v-btn>
+
+            
           </v-flex>
         </v-layout>
 
@@ -60,3 +66,20 @@
     </v-layout>
   </section>
 </template>
+
+<script>
+import { mapState, mapActions } from "vuex";
+export default {
+  computed: {
+    ...mapState({
+        getEmail : state => state.User.email,
+        getNickname : state => state.User.nickname,
+        getGrade: state=> state.User.grade,
+        getIsLogin: state=> state.isLogin
+    })
+  },
+  methods:{
+    ...mapActions(["logout"])
+  },
+}
+</script>
