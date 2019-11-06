@@ -49,16 +49,14 @@
                     ></v-text-field>
 
                     <v-text-field
-                      v-model="members.nickName"
-                      :counter="10"
-                      :rules="nameRules"
+                      v-model="members.nickname"
+                      :rules="nicknameRules"
                       label="NickName"
                       required
                     ></v-text-field>
 
                     <v-text-field
                       v-model="members.tel"
-                      :counter="11"
                       :rules="nameRules"
                       hint="010-1234-5678"
                       label="Tel"
@@ -94,6 +92,9 @@ export default {
       nameRules: [
         v => !!v || 'Tel is required',
       ],
+      nicknameRules: [
+        v => !!v || 'NickName is required',
+      ],
       email: '',
       emailRules: [
         v => !!v || 'E-mail is required',
@@ -120,7 +121,7 @@ export default {
      };
      axios({
        headers: { "Content-Type": "application/json" },
-       url: "http://13.124.143.135:8888/members/regist",
+       url: "http://13.124.143.135:8888/members/register",
        method: "post",
        data: JSON.stringify(body)
      }).then(res => {
@@ -129,15 +130,6 @@ export default {
      console.log("mem", body);
    }
 
- },
- mounted() {
-   axios({
-     headers: { "Content-Type": "application/json" },
-     url: "http://13.124.143.135:8888/members/test",
-     method: "post"
-   }).then(res => {
-     console.log("member", res.data);
-   });
  }
 };
 </script>
