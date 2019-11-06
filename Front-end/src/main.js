@@ -7,11 +7,16 @@ import 'roboto-fontface/css/roboto/roboto-fontface.css'
 import '@mdi/font/css/materialdesignicons.min.css'
 import router from './router'
 
+export const EventBus = new Vue()
+
 Vue.config.productionTip = false
 
 new Vue({
-  vuetify,
-  store,
-  router,
-  render: h => h(App)
+    vuetify,
+    store,
+    router,
+    render: h => h(App),
+    beforeCreate() {
+        this.$store.dispatch("getUserInfo")
+    },
 }).$mount('#app')

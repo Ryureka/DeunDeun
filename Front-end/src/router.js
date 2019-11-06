@@ -13,6 +13,7 @@ import FindIdPwd from './views/FindIdPwd'
 import AllRestaurant from './views/Admin_allRestaurant'
 import AllMember from './views/Admin_allMember'
 import AdminMain from './views/Admin_main'
+import NoticeAdd from './views/NoticeAdd'
 
 Vue.use(Router)
 
@@ -83,6 +84,11 @@ export default new Router({
             path: '/Admin/AdminMain',
             name: 'AdminMain',
             component: AdminMain
-        }
+        },
+        {
+            path: '/NoticeAdd',
+            name: 'NoticeAdd',
+            component: NoticeAdd
+        },
     ]
 })
