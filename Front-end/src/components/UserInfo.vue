@@ -61,7 +61,7 @@
           email:this.getEmail,
           password:pwdInput
         }
-        this.$http.post("http://192.168.31.66:8888/members/check",body)
+        this.$http.post("http://13.124.143.135:8888/members/check",body)
         .then(res=>{
           console.log(res.data)
           checkResult=res.data
@@ -85,7 +85,7 @@
           nickname:this.nickname,
           password:this.password
         }
-        this.$http.put("http://192.168.31.66:8888/members/update",body)
+        this.$http.put("http://13.124.143.135:8888/members/update",body)
         .then(res=>{
           console.log(res.data)
           alert("수정되었습니다")
@@ -97,7 +97,7 @@
       },
       delete(){
         axios({
-          url:"http://192.168.31.66:8888/members/delete",
+          url:"http://13.124.143.135:8888/members/delete",
           method:"delete",
           params:{
             member_id:this.getMemberId

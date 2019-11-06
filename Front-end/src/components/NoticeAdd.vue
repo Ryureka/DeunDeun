@@ -59,7 +59,7 @@ export default {
             } else {
                 alert("공지사항이 등록되었습니다.")
                 this.insertNotice()
-                window.location = "http://localhost:8080/Notice"
+                window.location = "http://13.124.143.135:8080/Notice"
             }
         },
         insertNotice() {
@@ -69,7 +69,7 @@ export default {
                 contents: this.contents
             }
 
-            this.$http.post("http://192.168.31.66:8888/notice/insert",notice)
+            this.$http.post("http://13.124.143.1356:8888/notice/insert",notice)
             .then(res=>{
                 console.log(res.data)
             })
@@ -80,7 +80,7 @@ export default {
         },
         cancle: function(event) {
             alert("공지사항 작성이 취소되었습니다.")
-            window.location = "http://localhost:8080/Notice"
+            window.location = "http://13.124.143.135:8080/Notice"
         },
     },
     computed: {
