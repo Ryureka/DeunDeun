@@ -85,9 +85,9 @@ export default {
     var urltest= ""
     
     if(cate != 'all'){
-        urltest = "http://192.168.31.66:8888/category/"+cateNum+"/";
+        urltest = "http://13.124.143.135:8888/category/"+cateNum+"/";
     }else {
-        urltest = "http://192.168.31.66:8888/restaurant/here";
+        urltest = "http://13.124.143.135:8888/restaurant/here";
     }
 
     // 구글맵스 지도 객체 생성

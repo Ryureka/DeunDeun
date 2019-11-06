@@ -123,7 +123,7 @@ export default {
  mounted() {
    
    var store = this.$route.params.storeNo;
-     axios.get("http://192.168.31.66:8888/food/"+store).then(res => {
+     axios.get("http://13.124.143.135:8888/food/"+store).then(res => {
        this.foods = res.data
 
       var step = 0;
@@ -136,7 +136,7 @@ export default {
 
     });
 
-    axios.get("http://192.168.31.66:8888/restaurant/"+store).then(res =>{
+    axios.get("http://13.124.143.135:8888/restaurant/"+store).then(res =>{
       this.store = res.data;
     });
 

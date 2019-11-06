@@ -120,7 +120,7 @@ export default {
      };
      axios({
        headers: { "Content-Type": "application/json" },
-       url: "http://192.168.31.139:8888/members/regist",
+       url: "http://13.124.143.135:8888/members/regist",
        method: "post",
        data: JSON.stringify(body)
      }).then(res => {
@@ -133,7 +133,7 @@ export default {
  mounted() {
    axios({
      headers: { "Content-Type": "application/json" },
-     url: "http://192.168.31.139:8888/members/test",
+     url: "http://13.124.143.135:8888/members/test",
      method: "post"
    }).then(res => {
      console.log("member", res.data);

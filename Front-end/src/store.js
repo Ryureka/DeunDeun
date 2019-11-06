@@ -7,10 +7,51 @@ Vue.use(Vuex)
 
 
 export default new Vuex.Store({
-    state: { //data
-        User: { member_id: '', name: '', nickname: '', email: '', tel: '', grade: '', create_at: '' },
-        isLogin: false,
-        isLoginError: false,
+  state:{ //data
+      User:{member_id:'',name:'',nickname:'',email:'',tel:'',grade:'',create_at:''},
+      isLogin: false,
+      isLoginError: false,
+  },
+  mutations:{
+
+  },
+  actions:{
+    login({state,dispatch},loginObj){
+      axios
+      .post("http://192.168.31.66:8888/members/login",loginObj)
+      .then(res=>{
+        console.log(res);
+        document.cookie="ddtoken="+res.data.ddtoken
+        if(document.cookie.indexOf("userError")!=-1){
+          alert("아이디가 존재하지 않습니다.")
+          dispatch('loginError')
+        }else if(document.cookie.indexOf("passwordError")!=-1){
+          alert("패스워드가 일치하지 않습니다.")
+          dispatch('loginError')
+        }else{
+          dispatch('getUserInfo')
+          dispatch('loginSuccess')
+          console.log(state.isLogin);
+          if(state.User.grade == "user"){
+            router.push({name:'Home'})
+          }else if(state.User.grade == "admin"){
+            router.push({name:'AdminMain'})
+          }
+        }
+      })
+    },
+    logout({state}){
+      alert("로그아웃 되었습니다")
+      document.cookie="ddtoken="
+      state.User.member_id=''
+      state.User.name=''
+      state.User.nickname=''
+      state.User.email=''
+      state.User.tel=''
+      state.User.grade=''
+      state.User.create_at=''
+      state.isLogin=false
+      router.push({name:'Home'})
     },
     mutations: {
 

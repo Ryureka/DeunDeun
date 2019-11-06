@@ -99,7 +99,7 @@
     },
     mounted() {
         axios({
-            url: "http://192.168.31.66:8888/restaurant/",
+            url: "http://13.124.143.135:8888/restaurant/",
             method: "get",
             params: {
             }
@@ -107,11 +107,11 @@
             this.restaurant = res.data
         });
     },
-    methods:{
-        deleteStore: function(){
-            console.log(this.selected)
+        methods:{
+            deleteStore: function(){
+                console.log(this.selected)
+            }
         }
-    }
     };
     
 </script>

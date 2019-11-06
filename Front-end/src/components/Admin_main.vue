@@ -176,11 +176,11 @@ export default {
    };
  },
  mounted() {
-    axios.get("http://192.168.31.66:8888/restaurant/count").then(res =>{
+    axios.get("http://13.124.143.135:8888/restaurant/count").then(res =>{
     this.Stores = res.data;
     });
     
-    axios.get("http://192.168.31.66:8888/members/count").then(res =>{
+    axios.get("http://13.124.143.135:8888/members/count").then(res =>{
     this.Members = res.data;
     });
     
