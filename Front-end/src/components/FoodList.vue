@@ -126,7 +126,7 @@ export default {
       myMarker.setMap(map);
       // 내 위치 마커 이미지
       var markerImage = new google.maps.MarkerImage(
-        "https://p7.hiclipart.com/preview/540/986/563/computer-icons-walking-clip-art-people-icon-transparent.jpg",
+        "https://cdn1.iconfinder.com/data/icons/relief-photo-editor-glyph/32/account-people-avatar-circle-512.png",
         null,
         null,
         null,

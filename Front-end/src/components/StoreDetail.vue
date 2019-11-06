@@ -21,7 +21,15 @@
                             src="https://cdn.vuetifyjs.com/images/cards/cooking.png"
                             ></v-img>
 
-                            <v-card-title>{{store.name}}</v-card-title>
+                            <v-card-title>{{store.name}} 
+                                <v-btn text icon id="like_none_Btn" @click="like">
+                                  <v-icon>mdi-heart</v-icon>
+                                </v-btn>
+
+                                <v-btn text icon color="pink" class="d-none" id="like_Btn" @click="dislike">
+                                  <v-icon>mdi-heart</v-icon>
+                                </v-btn>
+                            </v-card-title>
 
                             <v-card-text>
                             <v-row
@@ -29,10 +37,6 @@
                                 class="mx-0"
                             >
                             </v-row>
-
-                            <div class="my-4 subtitle-1 black--text">
-                                영업중
-                            </div>
 
                             <div>전화 번호 : {{store.tel}}<br> 영업시간 : {{store.operation_hour}}</div>
                             </v-card-text>
@@ -91,91 +95,8 @@
   </section>
 </template>
 
-<!--
 <script>
-  export default {
-    data: () => ({
-      total_price : 0,
-      selected: [],
-      selection: 1,
-       headers: [
-          {
-            text: 'Menu',
-            align: 'left',
-            value: 'name'
-          },
-          { text: 'Price', value:'price'},
-          { text: 'Category', value: 'category'},
-        ],
-        desserts: [
-          {
-            name: 'Frozen Yogurt',
-            category: 'Ice cream',
-            price: 2000,
-          },
-          {
-            name: 'Ice cream sandwich',
-            category: 'Ice cream',
-            price: 4000,
-          },
-          {
-            name: 'Eclair',
-            category: 'Cookie',
-            price: 3000,
-          },
-          {
-            name: 'Cupcake',
-            category: 'Pastry',
-            price: 6000,
-          },
-          {
-            name: 'Gingerbread',
-            category: 'Cookie',
-            price: 2200,
-          },
-          {
-            name: 'Jelly bean',
-            category: 'Candy',
-            price: 2700,
-          },
-          {
-            name: 'Lollipop',
-            category: 'Candy',
-            price: 3200,
-          },
-          {
-            name: 'Honeycomb',
-            category: 'Toffee',
-            price: 10000,
-          },
-          {
-            name: 'Donut',
-            category: 'Pastry',
-            price: 4500,
-          },
-          {
-            name: 'KitKat',
-            category: 'Candy',
-            price: 1000,
-          },
-        ],
-    }),
-
-    computed : {
-      totalCalculate : function() {
-        this.total_price = 0
-        this.selected.forEach(item => {
-          this.total_price += item.price
-        });
-        return this.total_price;
-      }
-    }
-
-  }
-</script>
--->
-
-<script>
+import { mapState } from "vuex";
 import axios from "axios";
 export default {
  name: "about",
@@ -196,11 +117,11 @@ export default {
      foods : [],
      store:[],
      GB : 0,
+     favorite_id: 0
    };
  },
  mounted() {
    
-
    var store = this.$route.params.storeNo;
      axios.get("http://192.168.31.66:8888/food/"+store).then(res => {
        this.foods = res.data
@@ -212,12 +133,27 @@ export default {
         res.data[step].국밥개수 = parseInt(temp);
         step++;
       });
-      console.log(res.data);
 
-      axios.get("http://192.168.31.66:8888/restaurant/"+store).then(res =>{
-        this.store = res.data;
-      });
-   });
+    });
+
+    axios.get("http://192.168.31.66:8888/restaurant/"+store).then(res =>{
+      this.store = res.data;
+    });
+
+    var store = this.$route.params.storeNo;
+    var member = this.getMemberId;
+  
+    axios.get("http://192.168.31.66:8888/favorite/member/"+member+"/restaurant/"+store).then(res =>{
+      this.favorite_id = res.data.favorite_id;
+      if(res.data == ""){
+          document.getElementById("like_none_Btn").classList.remove("d-none");
+          document.getElementById("like_Btn").classList.add("d-none");
+      }else{
+          document.getElementById("like_none_Btn").classList.add("d-none");
+          document.getElementById("like_Btn").classList.remove("d-none");
+      }
+    });
+
  },
  computed : {
       totalCalculate : function() {
@@ -232,7 +168,49 @@ export default {
         var total_price = this.total_price;
         this.GB = total_price/7000;
         return parseInt(this.GB);
+      },
+
+       ...mapState({
+        getMemberId : state => state.User.member_id,
+        getEmail : state => state.User.email,
+        getNickname : state => state.User.nickname,
+        getGrade: state=> state.User.grade,
+        getIsLogin: state=> state.isLogin
+    })
+  },
+  methods:{
+
+    like :function(){
+      var store = this.$route.params.storeNo;
+      var member = this.getMemberId;
+
+      var body ={
+        member_id : member,
+        restaurant_id : store
       }
+      axios({
+       headers: { "Content-Type": "application/json" },
+       url: "http://192.168.31.66:8888/favorite/insert",
+       method: "post",
+       data: JSON.stringify(body)
+      })
+      document.getElementById("like_none_Btn").classList.add("d-none");
+      document.getElementById("like_Btn").classList.remove("d-none");
+    },
+
+    dislike: function(){
+      var favorite_id  = this.favorite_id;
+      axios({
+        headers: { "Content-Type": "application/json" },
+        url: "http://192.168.31.66:8888/favorite/delete",
+        method: "delete",
+        params: {favorite_id: favorite_id}
+      })
+      document.getElementById("like_Btn").classList.add("d-none");
+      document.getElementById("like_none_Btn").classList.remove("d-none");
     }
+
+    
+  }
 };
 </script>

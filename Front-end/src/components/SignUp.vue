@@ -26,7 +26,6 @@
                       v-model="members.password"
                       :rules="passwordRules"
                       :type="show1 ? 'text' : 'password'"
-                      name="input-10-1"
                       label="Password"
                       hint="At least 8 characters"
                       :counter="20"
@@ -35,8 +34,7 @@
                     <v-text-field
                       :rules="passwordRules"
                       :type="show1 ? 'text' : 'password'"
-                      name="input-10-1"
-                      label="Password"
+                      label="Repeat Password"
                       hint="At least 8 characters"
                       :counter="20"
                     ></v-text-field>
@@ -62,17 +60,10 @@
                       v-model="members.tel"
                       :counter="11"
                       :rules="nameRules"
+                      hint="010-1234-5678"
                       label="Tel"
                       required
                     ></v-text-field>
-
-
-                    <v-checkbox
-                      v-model="checkbox"
-                      :rules="[v => !!v || 'You must agree to continue!']"
-                      label="Do you agree?"
-                      required
-                    ></v-checkbox>
 
                   </v-form>
               </v-card-text>
@@ -101,8 +92,7 @@ export default {
      valid: true,
       name: '',
       nameRules: [
-        v => !!v || 'Name is required',
-        v => (v && v.length <= 10) || 'Name must be less than 10 characters',
+        v => !!v || 'Tel is required',
       ],
       email: '',
       emailRules: [
@@ -113,6 +103,7 @@ export default {
       show1: false,
       passwordRules:[
         v => !!v || 'Password is required',
+        v => (v && v.length >= 8) || 'At least 8 characters'
       ]
    };
  },
@@ -137,6 +128,7 @@ export default {
      });
      console.log("mem", body);
    }
+
  },
  mounted() {
    axios({

@@ -18,10 +18,10 @@
                     <v-text-field v-model="nickname" label="Nickname" outlined></v-text-field>
                     <v-text-field v-model="password" label="Password" type="password" outlined>></v-text-field>
                   </v-list-item-content>
-                  
+
                   <!-- <v-list-item-avatar tile size="80" color="grey"></v-list-item-avatar> -->
                 </v-list-item>
-                
+
                 <!-- <v-card-actions> -->
                   <div class="text-center mb-6">
                     <v-btn rounded color="info" v-on:click="update">수정하기</v-btn>
@@ -131,5 +131,5 @@
 </script>
 
 <style>
-  
+
 </style>
