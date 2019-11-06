@@ -42,7 +42,7 @@ export default {
       
       axios({
         headers : {"Content-Type" : "application/json"},
-        url:"http://192.168.31.66:8888/notice/delete",
+        url:"http://13.124.143.135:8888/notice/delete",
         params:{
           notice_id: no
         },
@@ -54,7 +54,7 @@ export default {
     },
 
     selectAll(){
-      this.$http.get("http://192.168.31.66:8888/notice/all")
+      this.$http.get("http://13.124.143.135:8888/notice/all")
       .then(res=>{
         // console.log(res.data.length)
         for(var i=0;i<res.data.length;i++){

@@ -22,11 +22,11 @@
                             ></v-img>
 
                             <v-card-title>{{store.name}} 
-                                <v-btn text icon id="like_none_Btn" @click="like">
+                                <v-btn text icon id="like_none_Btn" @click="like" v-if="this.getIsLogin === true">
                                   <v-icon>mdi-heart</v-icon>
                                 </v-btn>
 
-                                <v-btn text icon color="pink" class="d-none" id="like_Btn" @click="dislike">
+                                <v-btn text icon color="pink" class="d-none" id="like_Btn" @click="dislike" v-if="this.getIsLogin === true"> 
                                   <v-icon>mdi-heart</v-icon>
                                 </v-btn>
                             </v-card-title>
@@ -143,7 +143,7 @@ export default {
     var store = this.$route.params.storeNo;
     var member = this.getMemberId;
   
-    axios.get("http://192.168.31.66:8888/favorite/member/"+member+"/restaurant/"+store).then(res =>{
+    axios.get("http://13.124.143.135:8888/favorite/member/"+member+"/restaurant/"+store).then(res =>{
       this.favorite_id = res.data.favorite_id;
       if(res.data == ""){
           document.getElementById("like_none_Btn").classList.remove("d-none");
@@ -190,7 +190,7 @@ export default {
       }
       axios({
        headers: { "Content-Type": "application/json" },
-       url: "http://192.168.31.66:8888/favorite/insert",
+       url: "http://13.124.143.135:8888/favorite/insert",
        method: "post",
        data: JSON.stringify(body)
       })
@@ -202,7 +202,7 @@ export default {
       var favorite_id  = this.favorite_id;
       axios({
         headers: { "Content-Type": "application/json" },
-        url: "http://192.168.31.66:8888/favorite/delete",
+        url: "http://13.124.143.135:8888/favorite/delete",
         method: "delete",
         params: {favorite_id: favorite_id}
       })
