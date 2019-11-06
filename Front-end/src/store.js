@@ -18,7 +18,7 @@ export default new Vuex.Store({
   actions:{
     login({state,dispatch},loginObj){
       axios
-      .post("http://192.168.31.66:8765/members/login",loginObj)
+      .post("http://192.168.31.66:8888/members/login",loginObj)
       .then(res=>{
         console.log(res);
         document.cookie="ddtoken="+res.data.ddtoken
