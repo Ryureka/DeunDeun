@@ -1,7 +1,18 @@
 # 대전 11조 가성비 좋은 음식점 추천사이트 든든입니다.
 
+<!--
 ## 웹 주소
 http://13.124.143.135:8383/
+-->
+
+# 프로젝트 소개
+웹사이트 요기요에서 Selenium을 이용하여 크롤링한 데이터를 바탕으로 
+Vuex+Vue+Spring Boot+MySQL를 사용하여 구현한 프로젝트입니다
+
+# 프로젝트 시연영상
+아래 이미지를 클릭하시면 유튜브에서 프로젝트의 시연영상을 보실 수 있습니다.  
+[![Video Label](http://img.youtube.com/vi/ghm2RhiDO-U/0.jpg)](https://youtu.be/ghm2RhiDO-U) 
+
 
 ## 기획
 오명현,오현지 
